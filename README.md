@@ -26,7 +26,7 @@ My-Portfolio/
     ├── components/        # UI components 
 ├── public/                # Static assets (images, icons)
 ├── utils/                 # Helper functions 
-├── .eslint.config.mjs     # ESLint config 
+├── .eslintrc.js          # ESLint config 
 ├── tsconfig.json          # TypeScript config 
 ├── prettierrc.js          # Prettier config
 ├── lint-staged.config.js  # Lint-staged config

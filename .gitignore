@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+dist/
+*.log
+
 # testing
 /coverage
 
@@ -39,3 +42,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ігноруємо всі XML-файли
+*.xml
+
+# IDE-конфіг WebStorm
+.idea/
+
+
