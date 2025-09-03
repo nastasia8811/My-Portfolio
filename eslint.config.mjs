@@ -8,17 +8,14 @@ import preferArrowPlugin from "eslint-plugin-prefer-arrow";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Compatibility helper to consume legacy shareable configs
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 export default [
-  // Extend Next.js core and TS recommendations
   ...compat.extends(
       "next/core-web-vitals",
       "next/typescript"
   ),
   {
-    // Files / directories to ignore
     ignores: [
       "node_modules/**",
       ".next/**",
@@ -26,13 +23,11 @@ export default [
       "build/**",
       "next-env.d.ts"
     ],
-    // Declare plugins as objects in flat config
     plugins: {
       "@typescript-eslint": tsPlugin,
       prettier: prettierPlugin,
       "prefer-arrow": preferArrowPlugin
     },
-    // Enable rules and override defaults
     rules: {
       'react-hooks/rules-of-hooks': 'warn',
       'react/no-unescaped-entities': 'off',

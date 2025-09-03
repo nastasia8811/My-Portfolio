@@ -1,33 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🌐 My Portfolio
 
-## Getting Started
+A personal portfolio website built with Next.js + TypeScript to showcase my projects, skills, and experience as a developer.
 
-First, run the development server:
+📸 Preview
 
-```bash
+🚀 Tech Stack
+
+⚡ Next.js 13+ (App Router)
+
+🔒 TypeScript
+
+🎨 Tailwind CSS for modern responsive design
+
+✅ ESLint + Prettier for clean code
+
+🐶 Husky + lint-staged for pre-commit checks
+
+📂 Project Structure
+
+<pre>
+My-Portfolio/ 
+├── .husky
+├── src
+    ├── app/               # Pages and routes 
+    ├── components/        # UI components 
+├── public/                # Static assets (images, icons)
+├── utils/                 # Helper functions 
+├── .eslint.config.mjs     # ESLint config 
+├── tsconfig.json          # TypeScript config 
+├── prettierrc.js          # Prettier config
+├── lint-staged.config.js  # Lint-staged config
+└── package.json 
+</pre>
+
+⚙️ Getting Started
+
+Clone the repository
+
+<pre>
+git clone https://github.com/username/My-Portfolio.git
+cd My-Portfolio
+</pre>
+
+Install dependencies
+
+<pre>
+npm install
+</pre>
+
+Run in development mode
+
+<pre>
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+</pre>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in your browser → http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🌟 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧑 About Me section
 
-## Learn More
+💼 Project gallery with descriptions and links
 
-To learn more about Next.js, take a look at the following resources:
+📬 Contact form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌙 Light / Dark mode (optional)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📱 Fully responsive design
+
+📦 Production Build
+
+<pre>
+npm run build
+npm start
+</pre>
+
+📄 License
+
+This project is licensed under the MIT License
 
 ## Deploy on Vercel
 
