@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import DownloadButton from '@/app/componentsReused/DownloadButton'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -46,7 +47,7 @@ const HeroParallax = () => {
     <section id='home' ref={wrapperRef} className='relative min-h-[100svh] overflow-hidden'>
       <video
         ref={videoRef}
-        className='pointer-events-none absolute inset-0 h-full w-full object-cover will-change-transform'
+        className='pointer-events-none absolute -inset-5 h-[calc(100%+5px)] w-[calc(100%+5px)] object-cover will-change-transform'
         src='/anastasiia.mp4'
         poster='/me.png'
         autoPlay
@@ -57,9 +58,7 @@ const HeroParallax = () => {
 
       <div className='absolute inset-0 bg-black/30' />
 
-      {/* Контент поверх */}
       <div className='relative z-10 mx-auto grid min-h-[100svh] max-w-5xl content-center px-6 pt-28 pb-20'>
-        {/*<div className='relative z-10 mx-auto flex h-full max-w-5xl flex-col items-start justify-center px-6'>*/}
         <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>
           I’m Anastasiia — Frontend Developer
         </h1>
@@ -68,13 +67,28 @@ const HeroParallax = () => {
           Creating fast, accessible, and beautiful interfaces with a passion for React, Next.js, and
           caring UX
         </p>
-        <Link
-          href='#projects'
-          aria-label='Skip to projects section'
-          className='mt-8 inline-flex w-auto justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-medium text-gray-900 backdrop-blur hover:bg-white place-self-start transform transition duration-300 hover:-translate-y-1 hover:scale-105'
-        >
-          Explore My Projects
-        </Link>
+        <div className='mt-8 flex flex-wrap gap-4'>
+          <Link
+            href='#projects'
+            aria-label='Skip to projects section'
+            className='inline-flex w-auto justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-medium text-gray-900 backdrop-blur
+                   transform transition duration-300 hover:bg-white hover:-translate-y-1 hover:scale-105'
+          >
+            Explore My Projects
+          </Link>
+          <DownloadButton
+            href='/CV_Frontend_Melnyk_Anastasiia.pdf'
+            filename='CV_Frontend_Melnyk_Anastasiia.pdf'
+            label='Download CV'
+            className={[
+              'inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium',
+              'bg-transparent text-white border border-white/70',
+              'transition-all duration-300',
+              'hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:scale-105',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white'
+            ].join(' ')}
+          />
+        </div>
       </div>
     </section>
   )

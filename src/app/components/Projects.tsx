@@ -3,7 +3,7 @@
 import { useMemo } from 'react'
 import { LazyMotion, domAnimation, m, type Variants, useReducedMotion } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
-import ProjectCard from '@/app/components/ProjectCard'
+import ProjectCard from '@/app/componentsReused/ProjectCard'
 import { projects } from '../../../public/projects'
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -39,12 +39,13 @@ const Projects = () => {
   const { container, item } = useMemo(() => makeVariants(reduce), [reduce])
 
   return (
-    <section
+    <div
       aria-labelledby='projects-heading'
-      className='mx-auto max-w-screen-xl px-4 py-12 md:py-16'
+      className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
+      //className='mx-auto max-w-screen-xl px-4 py-12 md:py-16'
       style={{ background: colors.background }}
     >
-      <header className='mb-8 md:mb-10'>
+      <div className='mb-8 md:mb-10'>
         <h2
           id='projects-heading'
           className='text-3xl font-semibold tracking-tight md:text-4xl'
@@ -52,7 +53,7 @@ const Projects = () => {
         >
           Selected Projects
         </h2>
-      </header>
+      </div>
 
       <LazyMotion features={domAnimation}>
         <m.ul
@@ -61,7 +62,7 @@ const Projects = () => {
           variants={container}
           initial='hidden'
           whileInView='show'
-          viewport={{ once: true, amount: 0.22 }} // тригер під час скролу
+          viewport={{ once: true, amount: 0.22 }}
         >
           {projects.map((project, i) => (
             <m.li
@@ -84,7 +85,7 @@ const Projects = () => {
           ))}
         </m.ul>
       </LazyMotion>
-    </section>
+    </div>
   )
 }
 

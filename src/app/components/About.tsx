@@ -5,30 +5,35 @@ import { useTheme } from '@/app/context/ThemeContext'
 const About = () => {
   const { colors } = useTheme()
   return (
-    <div className='max-w-screen-xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-start'>
-      <div>
-        <h2 className='text-3xl font-semibold mb-4' style={{ color: colors.primary }}>
-          About me
-        </h2>
+    <div
+      className='min-h-screen flex flex-col items-center justify-center px-4'
+      style={{ background: colors.background }}
+    >
+      <h2 className='text-3xl font-semibold mb-24' style={{ color: colors.primary }}>
+        About me
+      </h2>
+
+      <div className='max-w-screen-xl mx-auto px-4 grid grid-cols-1 gap-8 md:grid-cols-2'>
         <p className='leading-7' style={{ color: colors.secondaryText }}>
-          I specialize in React and Next.js. My experience includes building design systems,
-          performant SPA/SSR applications, and ensuring accessibility (a11y). I love writing tests,
-          exploring great DX tools, and collaborating on projects that make a real impact
+          Frontend Developer with 2+ years of hands-on experience building responsive, user-centric
+          web applications. Skilled in creating reusable UI components, integrating RESTful APIs,
+          and ensuring cross-browser compatibility. Adept at optimizing performance and enhancing
+          user experience through clean code and innovative solutions. Strong team player who
+          collaborates seamlessly with backend, design, and QA teams, while continuously adapting to
+          new technologies and challenges.
         </p>
-      </div>
-      <div
-        className='rounded-3xl p-6 shadow'
-        style={{ background: colors.cardBackground, color: colors.buttonText }}
-      >
-        <ul className='list-disc pl-6 space-y-1'>
-          <li>Languages: JavaScript, TypeScript</li>
-          <li>Frameworks & Libraries: React, Next.js (App Router, API, Auth)</li>
-          <li>UI Libraries: Material UI, Tailwind CSS, Bootstrap</li>
-          <li>Data Handling & Forms: Axios, Fetch API, Formik, Yup, Zod</li>
-          <li>Development Tools: Webpack, Gulp, Husky (Git hooks & linting), Git, JIRA</li>
-          <li>Backend & Databases (basic): Node.js, Express.js, MongoDB</li>
-          <li>Containerization & Orchestration: familiar with Kubernetes, Docker</li>
-        </ul>
+
+        <div
+          className='rounded-3xl p-6 shadow'
+          style={{ background: colors.cardBackground, color: colors.buttonText }}
+        >
+          <ul className='list-disc pl-6 space-y-1'>
+            <li>Languages: JavaScript, TypeScript</li>
+            <li>Frameworks & Libraries: React, Next.js, Vue.js </li>
+            <li>UI Libraries: Material UI, Tailwind CSS, Bootstrap</li>
+            <li>Backend & Databases (basic): Node.js, Express.js, MongoDB</li>
+          </ul>
+        </div>
       </div>
     </div>
   )

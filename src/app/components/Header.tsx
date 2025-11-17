@@ -1,50 +1,52 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from '@/app/context/ThemeContext'
 import ModeButton from '@/app/components/ModeButton'
-import { renderLinks } from '../../../utils/renderLinks'
+import NavLinks from '@/app/componentsReused/NavLinks'
 
 const Header = () => {
   const { colors } = useTheme()
+  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <header
-      className='fixed top-0 left-0 w-full z-50 shadow-md'
-      style={{
-        // Use CSS vars already applied to :root, but also set explicit in case
-        background: colors.background,
-        color: colors.primary
-      }}
+      className={[
+        'fixed top-0 left-0 w-full z-50 transition-colors duration-300',
+        scrolled
+          ? 'bg-white/10 dark:bg-zinc-900/50 backdrop-blur border-b border-white/10 dark:border-white/10'
+          : 'bg-transparent border-b border-transparent'
+      ].join(' ')}
+      style={{ color: colors.primary }}
     >
       <div className='max-w-screen-xl mx-auto flex items-center justify-between p-4'>
         <h3 className='h-8 cursor-pointer'>
-          <a href={'#'} aria-label='Skip to home section'>
+          <a href='#' aria-label='Skip to home section' className='text-white'>
             Anastasiia Melnyk
           </a>
         </h3>
 
-        <nav className='hidden md:flex space-x-6' style={{ color: colors.primary }}>
-          {renderLinks()}
+        <nav className='hidden md:flex space-x-6'>
+          <NavLinks onClick={() => {}} />
         </nav>
         <ModeButton className='hidden md:inline-flex' />
 
         <button
           type='button'
-          className='md:hidden p-2'
+          className='md:hidden p-2 text-white'
           onClick={() => setMenuOpen(true)}
           aria-label='Open menu'
           aria-expanded={menuOpen}
-          style={{ color: colors.text }}
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
+          <svg className='h-6 w-6' viewBox='0 0 24 24' fill='none' stroke='currentColor'>
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
@@ -57,11 +59,12 @@ const Header = () => {
 
       {menuOpen && (
         <div
-          className='fixed inset-0 z-40 backdrop-blur-sm flex flex-col items-center justify-center space-y-8 text-2xl px-6 transition-all duration-300 md:hidden'
-          style={{
-            background: typeof colors.background === 'string' ? colors.background : undefined,
-            color: colors.text
-          }}
+          className={`
+          fixed inset-0 z-40 flex flex-col items-center justify-center space-y-8 text-2xl px-6 md:hidden
+          transition-all duration-300
+          ${menuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
+          backdrop-blur-sm
+        `}
         >
           <button
             type='button'
@@ -72,13 +75,11 @@ const Header = () => {
           >
             ✕
           </button>
-
-          {renderLinks(() => setMenuOpen(false))}
+          <NavLinks onClick={() => setMenuOpen(false)} />
           <ModeButton mobile />
         </div>
       )}
     </header>
   )
 }
-
 export default Header

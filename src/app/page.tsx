@@ -7,13 +7,13 @@ const HomePage = () => {
   return (
     <div>
       <HeroParallax />
-      <section id='projects' className='py-16'>
+      <section id='projects'>
         <Projects />
       </section>
-      <section id='about' className='py-16'>
+      <section id='about'>
         <About />
       </section>
-      <section id='contact' className='py-16'>
+      <section id='contact'>
         <Contacts />
       </section>
     </div>

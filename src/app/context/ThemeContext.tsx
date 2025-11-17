@@ -22,7 +22,6 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-// helper: set CSS variables for easy styling in Tailwind/inline styles
 const applyCssVariables = (colors: ReturnType<typeof getThemeColors>) => {
   if (typeof document === 'undefined') return
   const root = document.documentElement
@@ -44,7 +43,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [])
 
-  // Whenever theme changes, apply vars + persist + set data-theme for CSS hooks
   useEffect(() => {
     applyCssVariables(colors)
     if (typeof document !== 'undefined') {

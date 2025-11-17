@@ -6,7 +6,7 @@ import Providers from './Providers'
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Melnyk Anastasiia'
+  title: 'Anastasiia Melnyk'
 }
 export const viewport: Viewport = {
   width: 'device-width',
