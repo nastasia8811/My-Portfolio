@@ -30,7 +30,7 @@ const HeroParallax = () => {
       const viewportH = window.innerHeight
       const progress = 1 - Math.min(Math.max(rect.top / viewportH, -1), 1)
       const translate = progress * 100 * speed
-      video.style.transform = `translateY(${translate}px) scale(1.05)`
+      video.style.transform = `translateY(${translate}px) scale(1.1)`
     }
 
     update()
@@ -47,6 +47,7 @@ const HeroParallax = () => {
     <section id='home' ref={wrapperRef} className='relative min-h-[100svh] overflow-hidden'>
       <video
         ref={videoRef}
+        style={{ transform: 'translateZ(0)' }}
         className='pointer-events-none absolute -inset-5 h-[calc(100%+5px)] w-[calc(100%+5px)] object-cover will-change-transform'
         src='/anastasiia.mp4'
         poster='/me.png'
