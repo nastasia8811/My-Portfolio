@@ -18,7 +18,7 @@ const ModeButton = ({ mobile, className = '', ...props }: ModeButtonProps) => {
       className={`cursor-pointer px-3 py-2 rounded-2xl shadow transition active:scale-[0.98] ${className}`}
       {...props}
     >
-      {mobile ? (theme === 'dark' ? 'Light mode' : 'Dark mode') : theme === 'dark' ? '☀️' : '🌙'}
+      {theme === 'dark' ? '☀️' : '🌙'}
     </button>
   )
 }

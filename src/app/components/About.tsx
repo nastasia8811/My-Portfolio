@@ -1,17 +1,17 @@
 'use client'
 
 import { useTheme } from '@/app/context/ThemeContext'
+import PageTitle from '@/app/componentsReused/PageTitle'
 
 const About = () => {
   const { colors } = useTheme()
   return (
     <div
+      aria-labelledby='about-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4'
       style={{ background: colors.background }}
     >
-      <h2 className='text-3xl font-semibold mb-24' style={{ color: colors.primary }}>
-        About me
-      </h2>
+      <PageTitle id='about-heading' title='About me' />
 
       <div className='max-w-screen-xl mx-auto px-4 grid grid-cols-1 gap-8 md:grid-cols-2'>
         <p className='leading-7' style={{ color: colors.secondaryText }}>

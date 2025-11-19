@@ -3,23 +3,18 @@
 import { useTheme } from '@/app/context/ThemeContext'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
+import PageTitle from '@/app/componentsReused/PageTitle'
 
 const Contacts = () => {
   const { colors } = useTheme()
 
   return (
     <div
+      aria-labelledby='contact-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
       style={{ background: colors.background }}
     >
-      <h2 className='text-3xl font-semibold mb-8' style={{ color: colors.primary }}>
-        Contact Me
-      </h2>
-
-      <p className='mb-24' style={{ color: colors.secondaryText }}>
-        Let’s build something great together. Get in touch with me!
-      </p>
-
+      <PageTitle id='contact-heading' title='Contact Me' />
       <div className='flex flex-col md:flex-row items-center justify-center gap-6'>
         <a
           href='https://www.linkedin.com/in/anastasiia-melnyk-frontend'
@@ -62,6 +57,9 @@ const Contacts = () => {
           <span>Send Email</span>
         </a>
       </div>
+      <p className='mt-14' style={{ color: colors.secondaryText }}>
+        Let’s build something great together. Get in touch with me!
+      </p>
     </div>
   )
 }

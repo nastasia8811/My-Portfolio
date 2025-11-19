@@ -26,7 +26,7 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   const { colors } = useTheme()
 
-  const borderColor = typeof colors.border === 'string' ? colors.border : 'rgba(0,0,0,0.08)'
+  const borderColor = colors.border
 
   return (
     <m.article
@@ -51,7 +51,6 @@ const ProjectCard = ({
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw'
             className='object-cover transition-transform duration-500 group-hover:scale-[1.04]'
-            // не ставимо priority, щоб не ламати LCP на списках
             priority={false}
           />
           <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent' />
@@ -72,10 +71,9 @@ const ProjectCard = ({
                 style={{
                   color: colors.secondaryText,
                   border: `1px solid ${borderColor}`,
-                  background:
-                    typeof colors.background === 'string' && !colors.background.includes('gradient')
-                      ? colors.background
-                      : 'transparent'
+                  background: !colors.background.includes('gradient')
+                    ? colors.background
+                    : 'transparent'
                 }}
               >
                 {t}
@@ -84,7 +82,7 @@ const ProjectCard = ({
           </ul>
         ) : null}
 
-        <p className='mt-3 text-sm' style={{ color: colors.secondaryText }}>
+        <p className='mt-3 text-sm' style={{ color: colors.primary }}>
           {description}
         </p>
 
@@ -108,7 +106,7 @@ const ProjectCard = ({
               target='_blank'
               rel='noopener noreferrer'
               className='rounded-full px-3 py-1.5 text-sm transition hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2'
-              style={{ color: colors.secondaryText }}
+              style={{ color: colors.primary }}
             >
               GitHub
             </Link>

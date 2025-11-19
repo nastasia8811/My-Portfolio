@@ -5,6 +5,7 @@ import { LazyMotion, domAnimation, m, type Variants, useReducedMotion } from 'mo
 import { useTheme } from '@/app/context/ThemeContext'
 import ProjectCard from '@/app/componentsReused/ProjectCard'
 import { projects } from '../../../public/projects'
+import PageTitle from '@/app/componentsReused/PageTitle'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -42,19 +43,9 @@ const Projects = () => {
     <div
       aria-labelledby='projects-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
-      //className='mx-auto max-w-screen-xl px-4 py-12 md:py-16'
       style={{ background: colors.background }}
     >
-      <div className='mb-8 md:mb-10'>
-        <h2
-          id='projects-heading'
-          className='text-3xl font-semibold tracking-tight md:text-4xl'
-          style={{ color: colors.primary }}
-        >
-          Selected Projects
-        </h2>
-      </div>
-
+      <PageTitle id='projects-heading' title='Selected Projects' />
       <LazyMotion features={domAnimation}>
         <m.ul
           role='list'
