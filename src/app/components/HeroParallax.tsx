@@ -49,7 +49,7 @@ const HeroParallax = () => {
         ref={videoRef}
         style={{ transform: 'translateZ(0)' }}
         className='pointer-events-none absolute -inset-5 h-[calc(100%+5px)] w-[calc(100%+5px)] object-cover will-change-transform'
-        src='/anastasiia.mp4'
+        src='/hero_video.mp4'
         poster='/me.png'
         autoPlay
         muted
