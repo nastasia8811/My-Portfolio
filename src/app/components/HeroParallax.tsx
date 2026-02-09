@@ -1,26 +1,24 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import DownloadButton from '@/app/componentsReused/DownloadButton'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const wrapperRef = useRef<HTMLElement>(null)
+
   useEffect(() => {
     const video = videoRef.current
     const section = wrapperRef.current
     if (!video || !section) return
 
     let raf = 0
-    let lastY = 0
     const speed = 0.35
-
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const onScroll = () => {
       if (reduceMotion) return
-      lastY = window.scrollY
       if (!raf) raf = requestAnimationFrame(update)
     }
 
@@ -47,8 +45,7 @@ const HeroParallax = () => {
     <section id='home' ref={wrapperRef} className='relative min-h-[100svh] overflow-hidden'>
       <video
         ref={videoRef}
-        style={{ transform: 'translateZ(0)' }}
-        className='pointer-events-none absolute -inset-5 h-[calc(100%+5px)] w-[calc(100%+5px)] object-cover will-change-transform'
+        className='pointer-events-none absolute inset-0 h-full w-full object-cover'
         src='/hero.mp4'
         poster='/me.png'
         autoPlay
@@ -64,14 +61,12 @@ const HeroParallax = () => {
           I’m Anastasiia — Frontend Developer
         </h1>
         <p className='mt-4 max-w-2xl text-white/90 md:text-lg'>
-          {' '}
           Creating fast, accessible, and beautiful interfaces with a passion for React, Next.js, and
           caring UX
         </p>
         <div className='mt-8 flex flex-wrap gap-4'>
           <Link
             href='#projects'
-            aria-label='Skip to projects section'
             className='inline-flex w-auto justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-medium text-gray-900 backdrop-blur
                    transform transition duration-300 hover:bg-white hover:-translate-y-1 hover:scale-105'
           >
@@ -81,13 +76,11 @@ const HeroParallax = () => {
             href='/CV_Frontend_Melnyk_Anastasiia.pdf'
             filename='CV_Frontend_Melnyk_Anastasiia.pdf'
             label='Download CV'
-            className={[
-              'inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium',
-              'bg-transparent text-white border border-white/70',
-              'transition-all duration-300',
-              'hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:scale-105',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white'
-            ].join(' ')}
+            className='inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium
+                       bg-transparent text-white border border-white/70
+                       transition-all duration-300
+                       hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:scale-105
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white'
           />
         </div>
       </div>
