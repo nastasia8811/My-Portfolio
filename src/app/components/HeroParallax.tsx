@@ -42,16 +42,21 @@ const HeroParallax = () => {
   }, [])
 
   return (
-    <section id='home' ref={wrapperRef} className='relative min-h-[100svh] overflow-hidden'>
+    <section
+      id='home'
+      ref={wrapperRef}
+      className='relative h-[100svh] w-full overflow-hidden aspect-[16/9]'
+    >
       <video
         ref={videoRef}
-        className='pointer-events-none absolute inset-0 h-full w-full object-cover'
-        src='/hero.mp4'
+        className='pointer-events-none absolute inset-0 h-full w-full object-cover block aspect-[16/9]'
+        src='/hero1.mp4'
         poster='/me.png'
         autoPlay
         muted
         loop
         playsInline
+        preload='auto'
       />
 
       <div className='absolute inset-0 bg-black/30' />
