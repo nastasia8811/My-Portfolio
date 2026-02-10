@@ -30,8 +30,8 @@ const HeroParallax = () => {
       const translate = progress * 100 * speed
       video.style.transform = `translateY(${translate}px) scale(1.1)`
     }
+    requestAnimationFrame(update)
 
-    update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
@@ -41,11 +41,15 @@ const HeroParallax = () => {
     }
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <section
       id='home'
       ref={wrapperRef}
-      className='relative h-[100svh] w-full overflow-hidden aspect-[16/9]'
+      className='relative h-screen w-full overflow-hidden aspect-[16/9]'
     >
       <video
         ref={videoRef}
@@ -61,7 +65,7 @@ const HeroParallax = () => {
 
       <div className='absolute inset-0 bg-black/30' />
 
-      <div className='relative z-10 mx-auto grid min-h-[100svh] max-w-5xl content-center px-6 pt-28 pb-20'>
+      <div className='relative z-10 mx-auto grid  min-h-screen max-w-5xl content-center px-6 pt-28 pb-20'>
         <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>
           I’m Anastasiia — Frontend Developer
         </h1>
