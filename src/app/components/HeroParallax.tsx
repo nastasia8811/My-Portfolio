@@ -15,7 +15,19 @@ const HeroParallax = () => {
 
     let raf = 0
     const speed = 0.35
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let reduceMotion = mql.matches
+
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      reduceMotion = e.matches
+      if (reduceMotion) {
+        video.style.transform = 'scale(1.1)'
+      } else {
+        requestAnimationFrame(update)
+      }
+    }
+
+    mql.addEventListener('change', onMotionChange)
 
     const onScroll = () => {
       if (reduceMotion) return
@@ -35,25 +47,18 @@ const HeroParallax = () => {
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
+      mql.removeEventListener('change', onMotionChange)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
   }, [])
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
-    <section
-      id='home'
-      ref={wrapperRef}
-      className='relative h-screen w-full overflow-hidden aspect-[16/9]'
-    >
+    <section id='home' ref={wrapperRef} className='relative h-screen w-full overflow-hidden'>
       <video
         ref={videoRef}
-        className='pointer-events-none absolute inset-0 h-full w-full object-cover block aspect-[16/9]'
+        className='pointer-events-none absolute inset-0 h-full w-full object-cover block will-change-transform'
         src='/hero1.mp4'
         poster='/me.png'
         autoPlay
@@ -65,7 +70,7 @@ const HeroParallax = () => {
 
       <div className='absolute inset-0 bg-black/30' />
 
-      <div className='relative z-10 mx-auto grid  min-h-screen max-w-5xl content-center px-6 pt-28 pb-20'>
+      <div className='relative z-10 mx-auto grid min-h-full max-w-5xl content-center px-6 pt-28 pb-20'>
         <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>
           I’m Anastasiia — Frontend Developer
         </h1>
