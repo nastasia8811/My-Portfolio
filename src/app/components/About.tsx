@@ -70,7 +70,7 @@ const About = () => {
   return (
     <div
       aria-labelledby='about-heading'
-      className='min-h-screen flex flex-col items-center justify-center px-4'
+      className='min-h-screen flex flex-col items-center justify-center px-4 py-32'
       style={{ background: colors.background }}
     >
       <PageTitle id='about-heading' title='About me' />
@@ -133,17 +133,17 @@ const About = () => {
                       key={skill}
                       className='rounded-full px-3 py-1 text-sm border transition-transform duration-200 hover:scale-105'
                       style={{
-                        color: colors.secondaryText,
-                        borderColor: colors.secondaryText + '44',
-                        background: colors.background
+                        color: colors.buttonText,
+                        borderColor: colors.primary + '44',
+                        background: colors.buttonBackground
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.borderColor = colors.accent
-                        e.currentTarget.style.color = colors.accent
+                        e.currentTarget.style.borderColor = colors.buttonText
+                        e.currentTarget.style.color = colors.primary
                       }}
                       onMouseLeave={e => {
-                        e.currentTarget.style.borderColor = colors.secondaryText + '44'
-                        e.currentTarget.style.color = colors.secondaryText
+                        e.currentTarget.style.borderColor = colors.buttonText + '44'
+                        e.currentTarget.style.color = colors.primary
                       }}
                     >
                       {skill}
