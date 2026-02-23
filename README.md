@@ -1,86 +1,79 @@
-🌐 My Portfolio
+# My Portfolio
 
-A personal portfolio website built with Next.js + TypeScript to showcase my projects, skills, and experience as a developer.
+A personal portfolio website built with Next.js + TypeScript to showcase my projects, skills, and experience as a frontend developer.
 
-📸 Preview
+## Tech Stack
 
-🚀 Tech Stack
+- **Next.js 15** (App Router, Turbopack)
+- **React 19** + **TypeScript**
+- **Tailwind CSS 4** for responsive design
+- **Framer Motion / Motion** for animations
+- **React Query** for data fetching
+- **ESLint 9** (flat config) + **Prettier** for code quality
+- **Husky** + **lint-staged** for pre-commit checks
 
-⚡ Next.js 13+ (App Router)
+## Project Structure
 
-🔒 TypeScript
+```
+My-Portfolio/
+├── .husky/                  # Git hooks
+├── public/                  # Static assets (images, video, CV)
+├── src/
+│   └── app/
+│       ├── components/      # Page-level components
+│       ├── componentsReused/ # Shared reusable components
+│       ├── context/         # React context providers
+│       ├── globals.css      # Global styles
+│       ├── theme.ts         # Theme colours
+│       ├── layout.tsx       # Root layout
+│       └── page.tsx         # Home page
+├── eslint.config.mjs        # ESLint flat config
+├── tailwind.config.ts       # Tailwind config
+├── .prettierrc.js           # Prettier config
+├── lint-staged.config.js    # Lint-staged config
+├── tsconfig.json            # TypeScript config
+└── package.json
+```
 
-🎨 Tailwind CSS for modern responsive design
+## Getting Started
 
-✅ ESLint + Prettier for clean code
+Clone the repository:
 
-🐶 Husky + lint-staged for pre-commit checks
-
-📂 Project Structure
-
-<pre>
-My-Portfolio/ 
-├── .husky
-├── src
-    ├── app/               # Pages and routes 
-    ├── components/        # UI components 
-├── public/                # Static assets (images, icons)
-├── utils/                 # Helper functions 
-├── .eslintrc.js          # ESLint config 
-├── tsconfig.json          # TypeScript config 
-├── prettierrc.js          # Prettier config
-├── lint-staged.config.js  # Lint-staged config
-└── package.json 
-</pre>
-
-⚙️ Getting Started
-
-Clone the repository
-
-<pre>
-git clone https://github.com/username/My-Portfolio.git
+```bash
+git clone https://github.com/nastasia8811/My-Portfolio.git
 cd My-Portfolio
-</pre>
+```
 
-Install dependencies
+Install dependencies:
 
-<pre>
+```bash
 npm install
-</pre>
+```
 
-Run in development mode
+Run in development mode:
 
-<pre>
+```bash
 npm run dev
-</pre>
+```
 
-Open in your browser → http://localhost:3000
+Open in your browser: http://localhost:3000
 
-🌟 Features
+## Features
 
-🧑 About Me section
+- About Me section
+- Project gallery with descriptions and links
+- Contact section
+- Light / Dark mode with localStorage persistence
+- Parallax hero with video background
+- Fully responsive design
 
-💼 Project gallery with descriptions and links
+## Production Build
 
-📬 Contact form
-
-🌙 Light / Dark mode (optional)
-
-📱 Fully responsive design
-
-📦 Production Build
-
-<pre>
+```bash
 npm run build
 npm start
-</pre>
+```
 
-📄 License
+## License
 
-This project is licensed under the MIT License
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.

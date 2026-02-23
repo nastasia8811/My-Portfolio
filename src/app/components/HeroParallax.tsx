@@ -87,7 +87,7 @@ const HeroParallax = () => {
             Explore My Projects
           </Link>
           <DownloadButton
-            href='/CV_Frontend_Melnyk_Anastasiia.pdf'
+            href='/FrontendDev_Melnyk.pdf'
             filename='CV_Frontend_Melnyk_Anastasiia.pdf'
             label='Download CV'
             className='inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium
