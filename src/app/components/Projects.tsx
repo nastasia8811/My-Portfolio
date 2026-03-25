@@ -1,43 +1,17 @@
 'use client'
 
 import { useMemo } from 'react'
-import { LazyMotion, domAnimation, m, type Variants, useReducedMotion } from 'motion/react'
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
 import ProjectCard from '@/app/componentsReused/ProjectCard'
-import { projects } from '../../../public/projects'
+import { projects } from '@/data/projects'
 import PageTitle from '@/app/componentsReused/PageTitle'
-
-const EASE = [0.22, 1, 0.36, 1] as const
-
-const makeVariants = (reduce: boolean): { container: Variants; item: Variants } => ({
-  container: {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: reduce ? 0 : 0.12,
-        delayChildren: reduce ? 0 : 0.05
-      }
-    }
-  },
-  item: {
-    hidden: (custom: { index: number }) => {
-      if (reduce) return { opacity: 0 }
-      const fromLeft = custom.index % 2 === 1
-      return { opacity: 0, x: fromLeft ? -32 : 0, y: fromLeft ? 0 : 40 }
-    },
-    show: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: reduce ? { duration: 0.2 } : { duration: 0.5, ease: EASE }
-    }
-  }
-})
+import { makeProjectsVariants } from '@/lib/projectsVariants'
 
 const Projects = () => {
   const { colors } = useTheme()
   const reduce = useReducedMotion() ?? false
-  const { container, item } = useMemo(() => makeVariants(reduce), [reduce])
+  const { container, item } = useMemo(() => makeProjectsVariants(reduce), [reduce])
 
   return (
     <div

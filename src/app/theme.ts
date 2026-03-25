@@ -11,6 +11,7 @@ export type ThemeColors = {
   buttonText: string
   border: string
   primaryGeneral: string
+  skillText: string
 }
 export const colorsGradient: ThemeColors = {
   primary: '#2C3E50',
@@ -22,7 +23,8 @@ export const colorsGradient: ThemeColors = {
   buttonBackground: '#A259FF',
   buttonText: '#FFFFFF',
   border: 'linear-gradient(135deg, #2C3E50, #A259FF)',
-  primaryGeneral: '#2C3E50'
+  primaryGeneral: '#2C3E50',
+  skillText: '#FFFFFF'
 } as const
 
 export const darkColorsGradient: ThemeColors = {
@@ -35,5 +37,6 @@ export const darkColorsGradient: ThemeColors = {
   buttonBackground: '#A259FF',
   buttonText: '#FFFFFF',
   border: '#3A3A3C',
-  primaryGeneral: '#2C3E50'
+  primaryGeneral: '#2C3E50',
+  skillText: '#A1A1AA'
 } as const

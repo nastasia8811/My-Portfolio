@@ -1,161 +1,197 @@
 'use client'
 
 import { useMemo } from 'react'
-import { LazyMotion, domAnimation, m, type Variants, useReducedMotion } from 'motion/react'
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
 import PageTitle from '@/app/componentsReused/PageTitle'
-
-const EASE = [0.22, 1, 0.36, 1] as const
-
-const SKILL_CATEGORIES = [
-  {
-    title: 'Core',
-    skills: ['TypeScript', 'React & Next.js', 'HTML', 'CSS (SCSS)', 'Redux', 'REST']
-  },
-  {
-    title: 'UI & Styling',
-    skills: ['Tailwind CSS', 'Material UI', 'Bootstrap', 'CSS Modules', 'Responsive Design']
-  },
-  {
-    title: 'Backend (Basic)',
-    skills: ['Node.js', 'Express', 'MongoDB']
-  },
-  {
-    title: 'Tools & AI',
-    skills: ['Git', 'GitHub', 'AI-assisted Development & Claude Code (Anthropic AI)']
-  }
-] as const
-
-const makeVariants = (
-  reduce: boolean
-): { paragraphs: Variants; paragraphItem: Variants; cards: Variants; cardItem: Variants } => ({
-  paragraphs: {
-    hidden: {},
-    show: {
-      transition: { staggerChildren: reduce ? 0 : 0.1 }
-    }
-  },
-  paragraphItem: {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 32 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: reduce ? { duration: 0.2 } : { duration: 0.5, ease: EASE }
-    }
-  },
-  cards: {
-    hidden: {},
-    show: {
-      transition: { staggerChildren: reduce ? 0 : 0.12, delayChildren: reduce ? 0 : 0.05 }
-    }
-  },
-  cardItem: {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: reduce ? { duration: 0.2 } : { duration: 0.5, ease: EASE }
-    }
-  }
-})
+import { SKILL_CATEGORIES } from '@/data/skillCategories'
+import { makeAboutVariants } from '@/lib/aboutVariants'
 
 const About = () => {
   const { colors } = useTheme()
   const reduce = useReducedMotion() ?? false
   const { paragraphs, paragraphItem, cards, cardItem } = useMemo(
-    () => makeVariants(reduce),
+    () => makeAboutVariants(reduce),
     [reduce]
   )
 
   return (
-    <div
+    <section
+      id='about'
       aria-labelledby='about-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4 py-32'
       style={{ background: colors.background }}
     >
-      <PageTitle id='about-heading' title='About me' />
-
-      <div className='max-w-screen-xl mx-auto px-4 w-full'>
+      <div className='mx-auto w-full max-w-3xl px-6 pb-12 pt-10'>
         <LazyMotion features={domAnimation}>
-          {/* Intro paragraphs */}
           <m.div
-            className='grid grid-cols-1 gap-8 md:grid-cols-2'
             variants={paragraphs}
             initial='hidden'
             whileInView='show'
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
+            <PageTitle id='about-heading' title='About me' />
+
+            {/* Headline */}
+            <m.h2
+              className='mb-1 text-[clamp(2rem,5vw,3.2rem)] font-normal leading-[1.15]'
+              style={{ color: colors.primary, fontFamily: 'serif' }}
+              variants={paragraphItem}
+            >
+              I build interfaces
+              <br />
+              people <em style={{ color: colors.accent }}>actually</em> enjoy using.
+            </m.h2>
+
+            {/* Divider */}
+            <m.div
+              className='my-6 h-0.5 w-12 rounded-full'
+              style={{ background: colors.accent }}
+              variants={paragraphItem}
+            />
+
+            {/* Body paragraphs */}
             <m.p
-              className='leading-7'
+              className='mb-5 text-base font-light leading-[1.8]'
               style={{ color: colors.secondaryText }}
               variants={paragraphItem}
             >
-              Frontend Developer with 2+ years of experience building high-performance web
-              applications using React, Next.js, and TypeScript. I design scalable, maintainable UI
-              architectures and deliver clean, user-focused interfaces aligned with product goals.
+              My path to frontend wasn&apos;t a straight line — and that&apos;s probably what makes
+              me a better developer. Before writing my first line of React, I spent years managing
+              complex partnerships and navigating high-stakes business relationships. I know how to
+              read a room, understand what someone actually needs, and communicate clearly across
+              teams.
             </m.p>
+
             <m.p
-              className='leading-7'
+              className='mb-5 text-base font-light leading-[1.8]'
               style={{ color: colors.secondaryText }}
               variants={paragraphItem}
             >
-              Leverage modern AI-assisted development tools including Claude Code for enhanced
-              productivity in code generation, refactoring, and workflow automation. Experienced in
-              API integration, performance optimization, and delivering production-ready solutions
-              in cross-functional teams.
+              Today I build{' '}
+              <strong className='font-medium'>
+                performant, accessible, and genuinely pleasant user interfaces
+              </strong>{' '}
+              with React, TypeScript, and Next.js. I care about the small things — the transition
+              that feels right, the component that&apos;s a joy to reuse, the codebase your future
+              self won&apos;t curse.
+            </m.p>
+
+            {/* Pull quote */}
+            <m.blockquote
+              className='my-8 border-l-2 py-2 pl-6 italic'
+              style={{
+                borderColor: colors.accent,
+                color: colors.secondaryText,
+                fontFamily: 'serif',
+                fontSize: '1.15rem',
+                lineHeight: 1.6
+              }}
+              variants={paragraphItem}
+            >
+              &quot;Her exceptional motivation and enthusiasm for her work were particularly
+              noteworthy. Even under high workloads, she proved herself to be highly resilient and
+              reliable.&quot;
+              <cite
+                className='mt-2 block not-italic'
+                style={{ color: colors.secondaryText, fontFamily: 'sans-serif', fontSize: '12px' }}
+              >
+                — PINKTUM, Reference Letter 2025
+              </cite>
+            </m.blockquote>
+
+            <m.p
+              className='mb-5 text-base font-light leading-[1.8]'
+              style={{ color: colors.secondaryText }}
+              variants={paragraphItem}
+            >
+              At <strong className='font-medium'>PINKTUM</strong> (an AI-powered SaaS e-learning
+              platform), I worked on a product used by enterprise clients across multiple countries
+              — building UI components from design systems, integrating RESTful APIs, and
+              contributing to code architecture decisions. Before that, at{' '}
+              <strong className='font-medium'>Neuland</strong> in Bremen, I built e-commerce
+              features in direct collaboration with clients, learning early that clean code and
+              clear communication are two sides of the same coin.
+            </m.p>
+
+            <m.p
+              className='mb-5 text-base font-light leading-[1.8]'
+              style={{ color: colors.secondaryText }}
+              variants={paragraphItem}
+            >
+              I&apos;m someone who takes{' '}
+              <strong className='font-medium'>ownership without being asked to</strong>. I
+              don&apos;t wait for a ticket to notice something&apos;s broken, and I don&apos;t ship
+              something I&apos;m not proud of. I thrive working closely with designers and product
+              people — I speak both languages.
             </m.p>
           </m.div>
 
-          {/* Skill cards */}
+          {/* Skills */}
           <m.div
-            className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mt-10'
+            className='mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2'
             variants={cards}
             initial='hidden'
             whileInView='show'
-            viewport={{ once: true, amount: 0.05 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             {SKILL_CATEGORIES.map(category => (
               <m.div
                 key={category.title}
-                className='rounded-3xl p-6 shadow border'
+                className='rounded-2xl border p-5'
                 style={{
-                  background: colors.cardBackground,
-                  borderColor: colors.secondaryText + '22'
+                  borderColor: colors.secondaryText + '22',
+                  background: colors.cardBackground
                 }}
                 variants={cardItem}
               >
-                <h3 className='text-lg font-semibold mb-4' style={{ color: colors.buttonText }}>
+                <h3
+                  className='mb-3 flex items-center gap-2 text-[11px] font-normal uppercase tracking-[0.18em]'
+                  style={{ color: colors.accent }}
+                >
+                  <span
+                    className='inline-block h-1.5 w-1.5 rounded-full'
+                    style={{ background: colors.accent }}
+                  />
                   {category.title}
                 </h3>
-                <div className='flex flex-wrap gap-2'>
+                <ul className='flex flex-wrap gap-2 list-none p-0'>
                   {category.skills.map(skill => (
-                    <span
+                    <li
                       key={skill}
-                      className='rounded-full px-3 py-1 text-sm border transition-transform duration-200 hover:scale-105'
+                      className='rounded-full border px-3 py-1 text-xs tracking-wide'
                       style={{
-                        color: colors.buttonText,
-                        borderColor: colors.primary + '44',
-                        background: colors.buttonBackground
-                      }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.borderColor = colors.buttonText
-                        e.currentTarget.style.color = colors.primary
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.borderColor = colors.buttonText + '44'
-                        e.currentTarget.style.color = colors.primary
+                        color: colors.skillText,
+                        borderColor: colors.secondaryText + '33',
+                        background: 'transparent'
                       }}
                     >
                       {skill}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </m.div>
             ))}
           </m.div>
+
+          {/* Location */}
+          <m.p
+            className='mt-10 flex items-center gap-1.5 text-[13px] font-light'
+            style={{ color: colors.secondaryText }}
+            variants={paragraphs}
+            initial='hidden'
+            whileInView='show'
+            viewport={{ once: true }}
+          >
+            <span
+              className='inline-block h-1.5 w-1.5 shrink-0 rounded-full'
+              style={{ background: colors.accent }}
+            />
+            Based in Hamburg, Germany — open to onsite and hybrid roles
+          </m.p>
         </LazyMotion>
       </div>
-    </div>
+    </section>
   )
 }
 

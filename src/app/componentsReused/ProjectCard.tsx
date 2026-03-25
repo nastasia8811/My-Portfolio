@@ -31,7 +31,7 @@ const ProjectCard = ({
   return (
     <m.article
       layout
-      className='group relative overflow-hidden rounded-2xl border shadow-sm ring-1 transition'
+      className='group relative flex h-full flex-col overflow-hidden rounded-2xl border shadow-sm ring-1 transition'
       style={{
         background: colors.cardBackground,
         borderColor
@@ -42,7 +42,7 @@ const ProjectCard = ({
         aria-label={`${title} – Demo`}
         target='_blank'
         rel='noopener noreferrer'
-        className='block focus:outline-none'
+        className='block flex-shrink-0 focus:outline-none'
       >
         <figure className='relative aspect-[16/9] overflow-hidden'>
           <Image
@@ -57,7 +57,7 @@ const ProjectCard = ({
         </figure>
       </Link>
 
-      <div className='relative z-0 p-5' style={{ color: colors.text }}>
+      <div className='relative z-0 flex flex-1 flex-col p-5' style={{ color: colors.text }}>
         <h3 className='text-lg font-semibold leading-snug' style={{ color: colors.primary }}>
           {title}
         </h3>
@@ -82,7 +82,7 @@ const ProjectCard = ({
           </ul>
         ) : null}
 
-        <p className='mt-3 text-sm' style={{ color: colors.primary }}>
+        <p className='mt-3 flex-1 text-justify text-sm' style={{ color: colors.primary }}>
           {description}
         </p>
 
