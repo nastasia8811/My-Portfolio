@@ -17,7 +17,7 @@ export const SKILL_CATEGORIES: readonly SkillCategory[] = [
     skills: ['Node.js', 'Express', 'MongoDB']
   },
   {
-    title: 'Tools & AI',
-    skills: ['Git', 'GitHub', 'AI-assisted Development & Claude Code (Anthropic AI)']
+    title: 'AI',
+    skills: ['Vercel AI SDK', 'OpenAI API', 'AI-assisted Development', 'Streaming UI']
   }
 ]

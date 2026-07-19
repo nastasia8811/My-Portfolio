@@ -1,7 +1,4 @@
-export type SkillCategory = {
-  title: string
-  skills: string[]
-}
+import { SKILL_CATEGORIES, type SkillCategory } from '@/data/skillCategories'
 
 export type Experience = {
   company: string
@@ -33,7 +30,7 @@ export type Developer = {
   location: string
   bio: string
   summary: string
-  skills: SkillCategory[]
+  skills: readonly SkillCategory[]
   yearsOfExperience: number
   contacts: {
     email: string
@@ -57,51 +54,7 @@ export const portfolioData: PortfolioData = {
     bio: 'Frontend Engineer with a non-linear career path — from managing complex B2B partnerships to building performant, accessible UIs with React, TypeScript, and Next.js. Combines strong communication skills from years in business with a deep love for clean code and thoughtful user experiences.',
     summary:
       'I build interfaces people actually enjoy using. Experienced in React 18, Next.js App Router, TypeScript, and modern frontend tooling. I care about the small things — the transition that feels right, the component that is a joy to reuse, the codebase your future self will not curse.',
-    skills: [
-      {
-        title: 'Core',
-        skills: [
-          'JavaScript',
-          'TypeScript',
-          'React 18',
-          'Next.js App Router',
-          'HTML5',
-          'CSS3 / SCSS',
-          'Redux',
-          'Zustand',
-          'React Query',
-          'REST APIs'
-        ]
-      },
-      {
-        title: 'UI & Styling',
-        skills: [
-          'Tailwind CSS',
-          'shadcn/ui',
-          'Material UI',
-          'Bootstrap',
-          'CSS Modules',
-          'Responsive Design',
-          'Framer Motion'
-        ]
-      },
-      {
-        title: 'Backend & DevOps',
-        skills: ['Node.js', 'Express', 'MongoDB', 'Docker']
-      },
-      {
-        title: 'Tools & AI',
-        skills: [
-          'Git',
-          'GitHub',
-          'Vercel AI SDK',
-          'OpenAI API',
-          'Jest',
-          'Vitest',
-          'AI-assisted Development'
-        ]
-      }
-    ],
+    skills: SKILL_CATEGORIES,
     yearsOfExperience: 3,
     contacts: {
       email: 'melnykk.ana@gmail.com',
