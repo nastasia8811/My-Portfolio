@@ -43,14 +43,12 @@ const About = () => {
               people <em style={{ color: colors.accent }}>actually</em> enjoy using.
             </m.h2>
 
-            {/* Divider */}
             <m.div
               className='my-6 h-0.5 w-12 rounded-full'
               style={{ background: colors.accent }}
               variants={paragraphItem}
             />
 
-            {/* Body paragraphs */}
             <m.p
               className='mb-5 text-base font-light leading-[1.8]'
               style={{ color: colors.secondaryText }}
@@ -126,8 +124,6 @@ const About = () => {
               people — I speak both languages.
             </m.p>
           </m.div>
-
-          {/* Skills */}
           <m.div
             className='mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2'
             variants={cards}
@@ -173,8 +169,6 @@ const About = () => {
               </m.div>
             ))}
           </m.div>
-
-          {/* Location */}
           <m.p
             className='mt-10 flex items-center gap-1.5 text-[13px] font-light'
             style={{ color: colors.secondaryText }}

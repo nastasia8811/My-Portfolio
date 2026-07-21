@@ -72,11 +72,12 @@ const HeroParallax = () => {
 
       <div className='relative z-10 mx-auto grid min-h-full max-w-5xl content-center px-6 pt-28 pb-20'>
         <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>
-          I’m Anastasiia — Frontend Developer
+          I’m Anastasiia — Frontend Engineer
         </h1>
         <p className='mt-4 max-w-2xl text-white/90 md:text-lg'>
-          Creating fast, accessible, and beautiful interfaces with a passion for React, Next.js, and
-          caring UX
+          I build interfaces for AI-driven products — streaming LLM chat, real-time UX, and
+          accessible design systems. React, Next.js, TypeScript, Vercel AI SDK. Production
+          experience at an AI SaaS in Germany.
         </p>
         <div className='mt-8 flex flex-wrap gap-4'>
           <Link
