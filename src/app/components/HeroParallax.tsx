@@ -2,7 +2,6 @@
 
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
-import DownloadButton from '@/app/componentsReused/DownloadButton'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -87,16 +86,6 @@ const HeroParallax = () => {
           >
             Explore My Projects
           </Link>
-          <DownloadButton
-            href='/Anastasiia_CV.pdf'
-            filename='CV_Frontend_Melnyk_Anastasiia.pdf'
-            label='Download CV'
-            className='inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium
-                       bg-transparent text-white border border-white/70
-                       transition-all duration-300
-                       hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:scale-105
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white'
-          />
         </div>
       </div>
     </section>
