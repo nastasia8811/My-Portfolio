@@ -1,5 +1,7 @@
 # My Portfolio
 
+[![CI](https://github.com/nastasia8811/My-Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/nastasia8811/My-Portfolio/actions/workflows/ci.yml)
+
 A personal portfolio website built with Next.js + TypeScript to showcase my projects, skills, and experience as a frontend developer.
 
 ## Tech Stack
@@ -13,7 +15,8 @@ A personal portfolio website built with Next.js + TypeScript to showcase my proj
 - **Zod** for runtime validation
 - **Vitest** + **React Testing Library** for unit and component testing
 - **ESLint 9** (flat config) + **Prettier** for code quality
-- **Husky** + **lint-staged** for pre-commit checks
+- **Husky** + **lint-staged** for pre-commit checks (lint, format, tests)
+- **GitHub Actions** for CI (lint, type-check, tests on push/PR)
 
 ## Project Structure
 
@@ -40,6 +43,8 @@ My-Portfolio/
 │   └── test/
 │       ├── setup.tsx         # Vitest global setup + mocks
 │       └── helpers.tsx       # renderWithTheme test helper
+├── .github/workflows/ci.yml # GitHub Actions CI pipeline
+├── .nvmrc                   # Pinned Node.js version
 ├── eslint.config.mjs        # ESLint flat config
 ├── tailwind.config.ts       # Tailwind config
 ├── .prettierrc.js           # Prettier config
@@ -98,6 +103,23 @@ Open in your browser: http://localhost:3000
 - Scroll-triggered staggered animations via Motion
 - Project gallery with tech badges, demo links, and GitHub links
 - Fully responsive design (mobile hamburger menu, adaptive grid)
+
+## CI/CD
+
+The project has two layers of quality gates:
+
+**Pre-commit (local)** — Husky + lint-staged runs on every commit:
+
+- ESLint and Prettier on staged files
+- Full Vitest test suite
+
+**GitHub Actions (remote)** — CI pipeline runs on every push and PR to `master`:
+
+- `npm run lint` — ESLint
+- `npx tsc --noEmit` — TypeScript type-checking
+- `npm test` — Vitest (79 tests)
+
+Deployment is handled automatically by Vercel's Git integration on push to `master`.
 
 ## Scripts
 
