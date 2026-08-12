@@ -7,10 +7,11 @@ A personal portfolio website built with Next.js + TypeScript to showcase my proj
 - **Next.js 15** (App Router, Turbopack)
 - **React 19** + **TypeScript**
 - **Tailwind CSS 4** for responsive design
-- **Framer Motion / Motion** for animations
-- **Vercel AI SDK** + **Anthropic** for AI-powered chat
-- **React Query** for data fetching
-- **Vitest** + **React Testing Library** for testing
+- **Motion** (Framer Motion v12) for scroll-triggered and layout animations
+- **Vercel AI SDK** + **Anthropic Claude** for streaming AI chat
+- **React Query** for async state management
+- **Zod** for runtime validation
+- **Vitest** + **React Testing Library** for unit and component testing
 - **ESLint 9** (flat config) + **Prettier** for code quality
 - **Husky** + **lint-staged** for pre-commit checks
 
@@ -19,7 +20,7 @@ A personal portfolio website built with Next.js + TypeScript to showcase my proj
 ```
 My-Portfolio/
 ├── .husky/                  # Git hooks
-├── public/                  # Static assets (images, video, CV)
+├── public/                  # Static assets (images, video)
 ├── src/
 │   ├── app/
 │   │   ├── api/chat/        # Streaming AI chat endpoint
@@ -30,6 +31,9 @@ My-Portfolio/
 │   │   ├── theme.ts         # Theme colours
 │   │   ├── layout.tsx       # Root layout
 │   │   └── page.tsx         # Home page
+│   ├── data/
+│   │   ├── projects.ts      # UI project data (covers, links)
+│   │   └── skillCategories.ts # Skill category definitions
 │   ├── lib/
 │   │   ├── portfolio-data.ts # Structured portfolio data
 │   │   └── data.ts          # Data access layer
@@ -44,6 +48,10 @@ My-Portfolio/
 ├── tsconfig.json            # TypeScript config
 └── package.json
 ```
+
+## Prerequisites
+
+- **Node.js** >= 20
 
 ## Getting Started
 
@@ -84,40 +92,25 @@ Open in your browser: http://localhost:3000
 
 ## Features
 
-- AI-powered chat (ask about skills, experience, or specific projects)
-- About Me section
-- Project gallery with descriptions and links
-- Contact section
-- Light / Dark mode with localStorage persistence
-- Parallax hero with video background
-- Fully responsive design
+- Streaming AI chat — ask about skills, experience, or specific projects (powered by Claude)
+- Light / Dark mode with localStorage persistence and CSS custom properties
+- Parallax hero with video background and reduced-motion support
+- Scroll-triggered staggered animations via Motion
+- Project gallery with tech badges, demo links, and GitHub links
+- Fully responsive design (mobile hamburger menu, adaptive grid)
 
-## Testing
+## Scripts
 
-Run the test suite:
-
-```bash
-npm test
-```
-
-Run tests in watch mode:
-
-```bash
-npm run test:watch
-```
-
-Run tests with coverage:
-
-```bash
-npm run test:coverage
-```
-
-## Production Build
-
-```bash
-npm run build
-npm start
-```
+| Command                 | Description                    |
+| ----------------------- | ------------------------------ |
+| `npm run dev`           | Start dev server (Turbopack)   |
+| `npm run build`         | Production build               |
+| `npm start`             | Serve production build         |
+| `npm test`              | Run all tests                  |
+| `npm run test:watch`    | Run tests in watch mode        |
+| `npm run test:coverage` | Run tests with coverage report |
+| `npm run lint`          | Lint with ESLint               |
+| `npm run lint:fix`      | Auto-fix lint issues           |
 
 ## License
 
