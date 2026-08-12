@@ -10,6 +10,7 @@ A personal portfolio website built with Next.js + TypeScript to showcase my proj
 - **Framer Motion / Motion** for animations
 - **Vercel AI SDK** + **Anthropic** for AI-powered chat
 - **React Query** for data fetching
+- **Vitest** + **React Testing Library** for testing
 - **ESLint 9** (flat config) + **Prettier** for code quality
 - **Husky** + **lint-staged** for pre-commit checks
 
@@ -29,13 +30,17 @@ My-Portfolio/
 │   │   ├── theme.ts         # Theme colours
 │   │   ├── layout.tsx       # Root layout
 │   │   └── page.tsx         # Home page
-│   └── lib/
-│       ├── portfolio-data.ts # Structured portfolio data
-│       └── data.ts          # Data access layer
+│   ├── lib/
+│   │   ├── portfolio-data.ts # Structured portfolio data
+│   │   └── data.ts          # Data access layer
+│   └── test/
+│       ├── setup.tsx         # Vitest global setup + mocks
+│       └── helpers.tsx       # renderWithTheme test helper
 ├── eslint.config.mjs        # ESLint flat config
 ├── tailwind.config.ts       # Tailwind config
 ├── .prettierrc.js           # Prettier config
 ├── lint-staged.config.js    # Lint-staged config
+├── vitest.config.mts         # Vitest config
 ├── tsconfig.json            # TypeScript config
 └── package.json
 ```
@@ -86,6 +91,26 @@ Open in your browser: http://localhost:3000
 - Light / Dark mode with localStorage persistence
 - Parallax hero with video background
 - Fully responsive design
+
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+Run tests with coverage:
+
+```bash
+npm run test:coverage
+```
 
 ## Production Build
 

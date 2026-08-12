@@ -18,7 +18,7 @@ type ChatRequestBody = {
   projectId?: string
 }
 
-const buildSystemPrompt = (mode: ChatMode, projectId?: string): string => {
+export const buildSystemPrompt = (mode: ChatMode, projectId?: string): string => {
   const { developer, experience, education } = getDeveloperInfo()
   const projects = getProjects()
 
