@@ -30,6 +30,8 @@ My-Portfolio/
 │   │   ├── components/      # Page-level components
 │   │   ├── componentsReused/ # Shared reusable components
 │   │   ├── context/         # React context providers
+│   │   ├── error.tsx         # Route-level error boundary
+│   │   ├── global-error.tsx  # Global error boundary
 │   │   ├── globals.css      # Global styles
 │   │   ├── theme.ts         # Theme colours
 │   │   ├── layout.tsx       # Root layout
@@ -103,6 +105,7 @@ Open in your browser: http://localhost:3000
 - Scroll-triggered staggered animations via Motion
 - Project gallery with tech badges, demo links, and GitHub links
 - Fully responsive design (mobile hamburger menu, adaptive grid)
+- Error boundaries with graceful fallback UIs and retry
 
 ## CI/CD
 
