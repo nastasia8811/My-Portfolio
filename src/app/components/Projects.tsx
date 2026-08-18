@@ -16,7 +16,7 @@ const Projects = () => {
   return (
     <div
       aria-labelledby='projects-heading'
-      className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
+      className='min-h-screen flex flex-col items-center justify-center px-4 py-32 text-center'
       style={{ background: colors.background }}
     >
       <PageTitle id='projects-heading' title='Selected Projects' />

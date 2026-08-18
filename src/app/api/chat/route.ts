@@ -7,16 +7,26 @@ import {
 } from 'ai'
 import { anthropic } from '@ai-sdk/anthropic'
 import { getDeveloperInfo, getProjects, getProjectBySlug } from '@/lib/data'
+import { z } from 'zod/v4'
 
 const USE_MOCK = process.env.CHAT_MOCK === 'true'
 
 type ChatMode = 'general' | 'project'
 
-type ChatRequestBody = {
-  messages: UIMessage[]
-  mode: ChatMode
-  projectId?: string
-}
+const chatRequestSchema = z.object({
+  messages: z
+    .array(
+      z
+        .object({
+          role: z.enum(['user', 'assistant']),
+          content: z.string()
+        })
+        .passthrough()
+    )
+    .min(1),
+  mode: z.enum(['general', 'project']).default('general'),
+  projectId: z.string().optional()
+})
 
 export const buildSystemPrompt = (mode: ChatMode, projectId?: string): string => {
   const { developer, experience, education } = getDeveloperInfo()
@@ -110,14 +120,24 @@ const mockResponse = (mode: ChatMode) => {
 }
 
 export const POST = async (req: Request) => {
-  const { messages, mode = 'general', projectId } = (await req.json()) as ChatRequestBody
+  const body: unknown = await req.json()
+  const parsed = chatRequestSchema.safeParse(body)
+
+  if (!parsed.success) {
+    return Response.json(
+      { error: 'Invalid request', details: parsed.error.issues },
+      { status: 400 }
+    )
+  }
+
+  const { messages, mode, projectId } = parsed.data
 
   if (USE_MOCK) {
     return mockResponse(mode)
   }
 
   const systemPrompt = buildSystemPrompt(mode, projectId)
-  const modelMessages = await convertToModelMessages(messages)
+  const modelMessages = await convertToModelMessages(messages as unknown as UIMessage[])
 
   const result = streamText({
     model: anthropic('claude-sonnet-4-20250514'),

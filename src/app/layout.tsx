@@ -4,10 +4,47 @@ import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import Providers from './Providers'
 import type { Metadata, Viewport } from 'next'
+import { portfolioData } from '@/lib/portfolio-data'
+
+const { developer } = portfolioData
 
 export const metadata: Metadata = {
-  title: 'Anastasiia Melnyk'
+  title: {
+    default: developer.name,
+    template: `%s | ${developer.name}`
+  },
+  description: developer.summary,
+  keywords: [
+    'Frontend Engineer',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Framer Motion',
+    'Web Developer',
+    'Portfolio'
+  ],
+  authors: [{ name: developer.name }],
+  creator: developer.name,
+  metadataBase: new URL('https://portfolio-anastasiia.vercel.app'),
+  openGraph: {
+    title: `${developer.name} — ${developer.title}`,
+    description: developer.summary,
+    url: '/',
+    siteName: developer.name,
+    locale: 'en_US',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${developer.name} — ${developer.title}`,
+    description: developer.summary
+  },
+  alternates: {
+    canonical: '/'
+  }
 }
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -16,7 +53,7 @@ export const viewport: Viewport = {
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang='uk'>
+    <html lang='en'>
       <body>
         <Providers>
           <Header />

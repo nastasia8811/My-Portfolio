@@ -3,11 +3,7 @@
 import { ButtonHTMLAttributes } from 'react'
 import { useTheme } from '@/app/context/ThemeContext'
 
-interface ModeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  mobile?: boolean
-}
-
-const ModeButton = ({ mobile, className = '', ...props }: ModeButtonProps) => {
+const ModeButton = ({ className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { theme, toggleTheme } = useTheme()
 
   return (

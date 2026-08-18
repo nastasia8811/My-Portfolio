@@ -79,7 +79,7 @@ const Header = () => {
           </button>
 
           <NavLinks onClick={() => setMenuOpen(false)} />
-          <ModeButton mobile />
+          <ModeButton />
         </div>
       )}
     </>
