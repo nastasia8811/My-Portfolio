@@ -18,6 +18,9 @@ const getTextContent = (msg: { parts: Array<{ type: string; text?: string }> }) 
     .map(p => p.text)
     .join('')
 
+const assistantBubbleBg = (colors: { cardBackground: string; secondaryText: string }) =>
+  colors.cardBackground.startsWith('linear') ? colors.secondaryText + '18' : colors.cardBackground
+
 const PortfolioChat = ({ projects }: PortfolioChatProps) => {
   const { colors } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
@@ -106,29 +109,12 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
       <button
         onClick={() => setIsOpen(prev => !prev)}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        className='fixed bottom-6 right-6 z-[1000] flex h-14 w-14 cursor-pointer items-center
+          justify-center rounded-full border-none shadow-[0_4px_20px_rgba(0,0,0,0.25)]
+          transition-transform duration-200 ease-in-out hover:scale-110'
         style={{
-          position: 'fixed',
-          bottom: 24,
-          right: 24,
-          zIndex: 1000,
-          width: 56,
-          height: 56,
-          borderRadius: '50%',
-          border: 'none',
           background: colors.buttonBackground,
-          color: colors.buttonText,
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.transform = 'scale(1.1)'
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.transform = 'scale(1)'
+          color: colors.buttonText
         }}
       >
         <svg
@@ -154,54 +140,30 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
 
       {/* Chat panel — hidden via CSS instead of unmounting to preserve state */}
       <div
-        style={{
-          position: 'fixed',
-          bottom: 92,
-          right: 24,
-          zIndex: 999,
-          width: 'min(400px, calc(100vw - 48px))',
-          height: 'min(560px, calc(100vh - 140px))',
-          borderRadius: 16,
-          overflow: 'hidden',
-          display: isOpen ? 'flex' : 'none',
-          flexDirection: 'column',
-          boxShadow: '0 8px 40px rgba(0,0,0,0.2)',
-          border: `1px solid ${colors.secondaryText}33`
-        }}
+        className={`fixed bottom-[92px] right-6 z-[999] w-[min(400px,calc(100vw-48px))]
+          h-[min(560px,calc(100vh-140px))] overflow-hidden rounded-2xl
+          shadow-[0_8px_40px_rgba(0,0,0,0.2)] ${isOpen ? 'flex' : 'hidden'} flex-col`}
+        style={{ border: `1px solid ${colors.secondaryText}33` }}
       >
         {/* Header */}
         <div
+          className='shrink-0 px-5 pt-4 pb-3'
           style={{
-            padding: '16px 20px 12px',
             background: colors.buttonBackground,
-            color: colors.buttonText,
-            flexShrink: 0
+            color: colors.buttonText
           }}
         >
-          <div
-            style={{
-              fontSize: 15,
-              fontWeight: 600,
-              marginBottom: 10
-            }}
-          >
-            Ask me anything
-          </div>
+          <div className='mb-2.5 text-[15px] font-semibold'>Ask me anything</div>
 
           {/* Mode tabs */}
-          <div style={{ display: 'flex', gap: 4 }}>
+          <div className='flex gap-1'>
             {(['general', 'project'] as const).map(m => (
               <button
                 key={m}
                 onClick={() => onModeChange(m)}
+                className='cursor-pointer rounded-lg border-none px-3.5 py-[5px] text-xs
+                  font-medium transition-[background] duration-150 ease-in-out'
                 style={{
-                  padding: '5px 14px',
-                  borderRadius: 8,
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontSize: 12,
-                  fontWeight: 500,
-                  transition: 'background 0.15s ease',
                   background: mode === m ? 'rgba(255,255,255,0.25)' : 'transparent',
                   color: colors.buttonText
                 }}
@@ -216,18 +178,9 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
             <select
               value={selectedProjectSlug}
               onChange={e => onProjectChange(e.target.value)}
-              style={{
-                marginTop: 8,
-                width: '100%',
-                padding: '6px 10px',
-                borderRadius: 8,
-                border: '1px solid rgba(255,255,255,0.3)',
-                background: 'rgba(255,255,255,0.15)',
-                color: colors.buttonText,
-                fontSize: 13,
-                outline: 'none',
-                cursor: 'pointer'
-              }}
+              className='mt-2 w-full cursor-pointer rounded-lg border border-white/30
+                bg-white/15 px-2.5 py-1.5 text-[13px] outline-none'
+              style={{ color: colors.buttonText }}
             >
               {projects.map(p => (
                 <option key={p.slug} value={p.slug} style={{ color: '#1C1C1E' }}>
@@ -240,25 +193,13 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
 
         {/* Messages area */}
         <div
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: '16px 16px 8px',
-            background: colors.background,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12
-          }}
+          className='flex flex-1 flex-col gap-3 overflow-y-auto px-4 pt-4 pb-2'
+          style={{ background: colors.background }}
         >
           {messages.length === 0 && (
             <div
-              style={{
-                textAlign: 'center',
-                color: colors.secondaryText,
-                fontSize: 13,
-                padding: '32px 16px',
-                lineHeight: 1.6
-              }}
+              className='px-4 py-8 text-center text-[13px] leading-relaxed'
+              style={{ color: colors.secondaryText }}
             >
               {mode === 'general'
                 ? "Hi! Ask me about Anastasiia's skills, experience, or approach."
@@ -269,35 +210,25 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
           {messages.map(msg => (
             <div
               key={msg.id}
-              style={{
-                display: 'flex',
-                justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start'
-              }}
+              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                style={{
-                  maxWidth: '85%',
-                  padding: '10px 14px',
-                  borderRadius: 12,
-                  fontSize: 13,
-                  lineHeight: 1.6,
-                  whiteSpace: 'pre-wrap',
-                  wordBreak: 'break-word',
-                  ...(msg.role === 'user'
+                className={`max-w-[85%] whitespace-pre-wrap break-words px-3.5 py-2.5
+                  text-[13px] leading-relaxed ${
+                    msg.role === 'user' ? 'rounded-xl rounded-br-sm' : 'rounded-xl rounded-bl-sm'
+                  }`}
+                style={
+                  msg.role === 'user'
                     ? {
                         background: colors.buttonBackground,
-                        color: colors.buttonText,
-                        borderBottomRightRadius: 4
+                        color: colors.buttonText
                       }
                     : {
-                        background: colors.cardBackground.startsWith('linear')
-                          ? colors.secondaryText + '18'
-                          : colors.cardBackground,
+                        background: assistantBubbleBg(colors),
                         color: colors.text,
-                        borderBottomLeftRadius: 4,
                         border: `1px solid ${colors.secondaryText}22`
-                      })
-                }}
+                      }
+                }
               >
                 {getTextContent(msg)}
               </div>
@@ -305,18 +236,13 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
           ))}
 
           {status === 'submitted' && (
-            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div className='flex justify-start'>
               <div
+                className='rounded-xl rounded-bl-sm px-3.5 py-2.5 text-[13px]'
                 style={{
-                  padding: '10px 14px',
-                  borderRadius: 12,
-                  fontSize: 13,
                   color: colors.secondaryText,
-                  background: colors.cardBackground.startsWith('linear')
-                    ? colors.secondaryText + '18'
-                    : colors.cardBackground,
-                  border: `1px solid ${colors.secondaryText}22`,
-                  borderBottomLeftRadius: 4
+                  background: assistantBubbleBg(colors),
+                  border: `1px solid ${colors.secondaryText}22`
                 }}
               >
                 Thinking...
@@ -330,13 +256,10 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
         {/* Input area */}
         <form
           onSubmit={onSubmit}
+          className='flex shrink-0 gap-2 px-4 py-3'
           style={{
-            padding: '12px 16px',
             borderTop: `1px solid ${colors.secondaryText}22`,
-            background: colors.background,
-            display: 'flex',
-            gap: 8,
-            flexShrink: 0
+            background: colors.background
           }}
         >
           <input
@@ -344,15 +267,11 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
             onChange={e => setInput(e.target.value)}
             placeholder='Type a message...'
             disabled={isLoading}
+            className='flex-1 rounded-[10px] bg-transparent px-3.5 py-2.5 text-[13px]
+              outline-none focus:[border-color:var(--accent)]'
             style={{
-              flex: 1,
-              padding: '10px 14px',
-              borderRadius: 10,
               border: `1px solid ${colors.secondaryText}33`,
-              background: 'transparent',
-              color: colors.text,
-              fontSize: 13,
-              outline: 'none'
+              color: colors.text
             }}
             onFocus={e => {
               e.currentTarget.style.borderColor = colors.accent
@@ -365,20 +284,12 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
             type='submit'
             disabled={isLoading || !input.trim()}
             aria-label='Send message'
+            className='flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center
+              rounded-[10px] border-none transition-opacity duration-150 ease-in-out
+              disabled:cursor-default disabled:opacity-50'
             style={{
-              width: 40,
-              height: 40,
-              borderRadius: 10,
-              border: 'none',
               background: colors.buttonBackground,
-              color: colors.buttonText,
-              cursor: isLoading || !input.trim() ? 'default' : 'pointer',
-              opacity: isLoading || !input.trim() ? 0.5 : 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-              transition: 'opacity 0.15s ease'
+              color: colors.buttonText
             }}
           >
             <svg
