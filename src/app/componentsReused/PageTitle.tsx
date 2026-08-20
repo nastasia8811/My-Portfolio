@@ -10,7 +10,7 @@ const PageTitle = ({ title, id }: PageTitleProps) => {
   return (
     <h2
       id={id}
-      className='text-3xl tracking-tight font-semibold mb-12'
+      className='text-3xl tracking-tight font-semibold mb-12 uppercase'
       style={{ color: colors.primary }}
     >
       {title}

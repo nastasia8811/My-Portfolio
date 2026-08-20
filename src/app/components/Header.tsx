@@ -30,7 +30,7 @@ const Header = () => {
       >
         <div className='max-w-screen-xl mx-auto flex items-center justify-between p-4'>
           <h3 className='h-8 cursor-pointer'>
-            <a href='#' aria-label='Skip to home section' className='text-white'>
+            <a href='#' aria-label='Skip to home section' className='text-white uppercase'>
               Anastasiia Melnyk
             </a>
           </h3>

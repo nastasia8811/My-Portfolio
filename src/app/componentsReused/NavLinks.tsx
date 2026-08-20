@@ -16,7 +16,7 @@ const NavLinks = ({ onClick }: NavLinksProps) => {
       key={label}
       href={href}
       onClick={onClick}
-      className='hover:text-accent transition  duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 text-white'
+      className='hover:text-accent transition uppercase duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 text-white'
     >
       {label}
     </Link>
