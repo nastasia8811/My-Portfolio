@@ -132,3 +132,75 @@
 
 /* 6) Медійні переваги: система сама вимикає світлі скролбари в темному режимі,
    але ми зберігаємо контроль через клас .dark (див. доки по dark mode) */
+
+/* 7) Стартовий лоадер: 3D-надуті скляні літери імені */
+@layer components {
+  .loader-letter {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    background-image: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #e7defe 20%,
+      #b98bff 48%,
+      #7c4fe0 75%,
+      #4a2c8f 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow:
+      0 2px 0 rgba(255, 255, 255, 0.6),
+      0 -1px 8px rgba(255, 255, 255, 0.45),
+      0 14px 28px rgba(10, 6, 30, 0.6);
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.5))
+      drop-shadow(0 0 30px rgba(162, 89, 255, 0.85)) drop-shadow(0 0 60px rgba(90, 140, 255, 0.5));
+  }
+
+  /* Глянцевий блік зверху кожної літери, як на видутому склі */
+  .loader-letter::before {
+    content: attr(data-char);
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0) 42%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .loader-letter:nth-child(3n + 2) {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.45))
+      drop-shadow(0 0 32px rgba(90, 140, 255, 0.85)) drop-shadow(0 0 60px rgba(162, 89, 255, 0.45));
+  }
+
+  .loader-letter:nth-child(3n + 3) {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55))
+      drop-shadow(0 0 32px rgba(230, 130, 255, 0.75)) drop-shadow(0 0 60px rgba(90, 140, 255, 0.4));
+  }
+}
+
+@layer utilities {
+  @keyframes loader-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(18px, -22px, 0) scale(1.08);
+    }
+  }
+  .animate-loader-float {
+    animation: loader-float 6s ease-in-out infinite;
+  }
+  .animate-loader-float-delayed {
+    animation: loader-float 7s ease-in-out infinite 1.4s;
+  }
+}

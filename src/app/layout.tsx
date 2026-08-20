@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import './globals.css'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
+import Loader from '@/app/components/Loader'
 import Providers from './Providers'
 import type { Metadata, Viewport } from 'next'
 import { portfolioData } from '@/lib/portfolio-data'
@@ -55,6 +56,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang='en'>
       <body>
+        <Loader />
         <Providers>
           <Header />
           <main>{children}</main>
