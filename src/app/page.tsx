@@ -1,4 +1,5 @@
 import HeroParallax from '@/app/components/HeroParallax'
+import Effects from '@/app/components/Effects'
 import About from '@/app/components/About'
 import Projects from '@/app/components/Projects'
 import Contacts from '@/app/components/Contacts'
@@ -9,19 +10,14 @@ const HomePage = () => {
   const projects = getProjects()
 
   return (
-    <div>
+    <main>
       <HeroParallax />
-      <section id='projects'>
-        <Projects />
-      </section>
-      <section id='about'>
-        <About />
-      </section>
-      <section id='contact'>
-        <Contacts />
-      </section>
+      <Effects />
+      <Projects />
+      <About />
+      <Contacts />
       <PortfolioChat projects={projects} />
-    </div>
+    </main>
   )
 }
 

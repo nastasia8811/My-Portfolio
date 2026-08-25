@@ -32,7 +32,8 @@ const Contacts = () => {
   const { container, item } = useMemo(() => makeVariants(reduce), [reduce])
 
   return (
-    <div
+    <section
+      id='contact'
       aria-labelledby='contact-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
       style={{ background: colors.background }}
@@ -120,7 +121,7 @@ const Contacts = () => {
           </m.p>
         </m.div>
       </LazyMotion>
-    </div>
+    </section>
   )
 }
 

@@ -53,12 +53,23 @@ vi.mock('motion/react', () => {
     }
   }
 
+  const mockMotionValue = (initial = 0) => ({
+    get: () => initial,
+    set: () => {},
+    on: () => () => {},
+    onChange: () => () => {},
+    destroy: () => {}
+  })
+
   return {
     m: new Proxy({}, handler),
     motion: new Proxy({}, handler),
     AnimatePresence: ({ children }: { children: ReactNode }) => <>{children}</>,
     LazyMotion: ({ children }: { children: ReactNode }) => <>{children}</>,
     domAnimation: {},
-    useReducedMotion: () => false
+    useReducedMotion: vi.fn(() => false),
+    useMotionValue: (initial: number) => mockMotionValue(initial),
+    useTransform: () => mockMotionValue(0),
+    useSpring: () => mockMotionValue(0)
   }
 })

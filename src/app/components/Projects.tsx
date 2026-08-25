@@ -14,7 +14,8 @@ const Projects = () => {
   const { container, item } = useMemo(() => makeProjectsVariants(reduce), [reduce])
 
   return (
-    <div
+    <section
+      id='projects'
       aria-labelledby='projects-heading'
       className='min-h-screen flex flex-col items-center justify-center px-4 py-32 text-center'
       style={{ background: colors.background }}
@@ -50,7 +51,7 @@ const Projects = () => {
           ))}
         </m.ul>
       </LazyMotion>
-    </div>
+    </section>
   )
 }
 

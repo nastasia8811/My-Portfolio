@@ -52,3 +52,28 @@ npm test             # Vitest (run once)
 npm run test:watch   # Vitest (watch mode)
 npx tsc --noEmit     # Type check
 ```
+
+## Skills
+
+### `/component` — Create a React component
+
+Creates a new React component with a co-located test file following all project conventions. Produces two files:
+
+- **Component**: `src/app/components/Name.tsx` (or `componentsReused/` if reusable)
+- **Test**: `src/app/components/Name.test.tsx`
+
+Enforces: arrow functions, default export, TypeScript, Tailwind-only styling, `@/*` imports, server-by-default with `'use client'` only when needed, semantic HTML, and proper accessibility.
+
+## Agents
+
+### `git-reviewer` — Pre-commit code review
+
+Read-only agent that analyzes staged git changes before committing. Checks for secrets, `any` types, missing `'use client'`, debug code, inline styles, missing tests, and project convention violations. Outputs a structured review with a verdict (ready / fix first / do not commit).
+
+### `git-committer` — Commit staged changes
+
+Handles staging, re-staging after pre-commit hook fixes, and crafting clean commit messages. Enforces: imperative mood, 50-char subject, no prefixes, no AI attribution, no debug code or secrets. One logical change per commit.
+
+### `pre-commit-runner` — Run pre-commit checks
+
+Runs the full pre-commit pipeline on changed files: ESLint with `--fix`, Prettier with `--write`, then Vitest. Reports auto-fixed issues, remaining errors, and test results. Use proactively after writing code.
