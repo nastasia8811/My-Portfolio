@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -70,22 +71,30 @@ const HeroParallax = () => {
       <div className='absolute inset-0 bg-black/30' />
 
       <div className='relative z-10 mx-auto grid min-h-full max-w-5xl content-center px-6 pt-28 pb-20'>
-        <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>
-          I’m Anastasiia — Frontend Engineer
-        </h1>
-        <p className='mt-4 max-w-2xl text-white/90 md:text-lg'>
-          I build interfaces for AI-driven products — streaming LLM chat, real-time UX, and
-          accessible design systems. React, Next.js, TypeScript, Vercel AI SDK. Production
-          experience at an AI SaaS in Germany.
-        </p>
-        <div className='mt-8 flex flex-wrap gap-4'>
-          <Link
-            href='#projects'
-            className='inline-flex w-auto justify-center rounded-full bg-white/90 px-6 py-3 text-sm font-medium text-gray-900 backdrop-blur
-                   transform transition duration-300 hover:bg-white hover:-translate-y-1 hover:scale-105'
+        <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>Frontend Engineer</h1>
+
+        <div className='mt-8 flex flex-wrap items-center gap-4'>
+          <a
+            href='https://www.linkedin.com/in/anastasiia-melnyk-frontend'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='LinkedIn'
+            className='inline-flex items-center justify-center size-11 rounded-full bg-white/20 text-white backdrop-blur
+                   transform transition duration-300 hover:bg-white/40 hover:-translate-y-1 hover:scale-110'
           >
-            Explore My Projects
-          </Link>
+            <FaLinkedin size={20} />
+          </a>
+
+          <a
+            href='https://github.com/nastasia8811'
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label='GitHub'
+            className='inline-flex items-center justify-center size-11 rounded-full bg-white/20 text-white backdrop-blur
+                   transform transition duration-300 hover:bg-white/40 hover:-translate-y-1 hover:scale-110'
+          >
+            <FaGithub size={20} />
+          </a>
         </div>
       </div>
     </section>
