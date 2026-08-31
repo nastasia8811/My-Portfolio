@@ -18,7 +18,7 @@ vi.mock('next/link', () => ({
 describe('Header', () => {
   it('renders the site name', () => {
     renderWithTheme(<Header />)
-    expect(screen.getByText('Anastasiia Melnyk')).toBeInTheDocument()
+    expect(screen.getByText('Anastasiia')).toBeInTheDocument()
   })
 
   it('renders desktop navigation links', () => {

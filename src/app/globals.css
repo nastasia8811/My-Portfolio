@@ -288,6 +288,19 @@
   }
 }
 
+/* Exit transition — glass letters → plain white during FLIP flight */
+.loader-exiting .loader-letter {
+  animation: none !important;
+  filter: none;
+  -webkit-text-fill-color: white;
+  transition:
+    filter 0.5s ease-out,
+    -webkit-text-fill-color 0.5s ease-out;
+}
+.loader-exiting .loader-text-wrap {
+  animation: none !important;
+}
+
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
   .loader-letter,
