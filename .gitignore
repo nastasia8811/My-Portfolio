@@ -52,3 +52,13 @@ next-env.d.ts
 
 
 .env.local
+
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/projects/
+.claude/history.jsonl
+.claude/file-history/
+.claude/shell-snapshots/
+.claude/debug/
+.claude/todos/
+.claude/paste-cache/
