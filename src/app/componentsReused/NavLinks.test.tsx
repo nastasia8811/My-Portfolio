@@ -24,14 +24,14 @@ describe('NavLinks', () => {
     render(<NavLinks />)
     expect(screen.getByText('My Projects')).toBeInTheDocument()
     expect(screen.getByText('About')).toBeInTheDocument()
-    expect(screen.getByText('Say hi')).toBeInTheDocument()
+    expect(screen.getByText('Contact me')).toBeInTheDocument()
   })
 
   it('links point to correct anchors', () => {
     render(<NavLinks />)
     expect(screen.getByText('My Projects')).toHaveAttribute('href', '#projects')
     expect(screen.getByText('About')).toHaveAttribute('href', '#about')
-    expect(screen.getByText('Say hi')).toHaveAttribute('href', '#contact')
+    expect(screen.getByText('Contact me')).toHaveAttribute('href', '#contact')
   })
 
   it('calls onClick handler when a link is clicked', async () => {

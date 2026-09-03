@@ -25,7 +25,7 @@ describe('Header', () => {
     renderWithTheme(<Header />)
     expect(screen.getByText('My Projects')).toBeInTheDocument()
     expect(screen.getByText('About')).toBeInTheDocument()
-    expect(screen.getByText('Say hi')).toBeInTheDocument()
+    expect(screen.getByText('Contact me')).toBeInTheDocument()
   })
 
   it('renders the hamburger button for mobile', () => {

@@ -4,9 +4,9 @@ import Contacts from './Contacts'
 import { renderWithTheme } from '@/test/helpers'
 
 describe('Contacts', () => {
-  it('renders the section with "Say Hi" title', () => {
+  it('renders the section with "Contact" title', () => {
     renderWithTheme(<Contacts />)
-    expect(screen.getByText('Say Hi')).toBeInTheDocument()
+    expect(screen.getByText('Contact')).toBeInTheDocument()
   })
 
   it('renders the email assembled from parts with correct aria-label', () => {

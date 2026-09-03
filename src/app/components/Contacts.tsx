@@ -57,7 +57,7 @@ const Contacts = () => {
       className='min-h-screen flex flex-col items-center justify-center px-4 text-center'
       style={{ background: colors.background }}
     >
-      <PageTitle id='contact-heading' title='Say Hi' />
+      <PageTitle id='contact-heading' title='Contact' />
 
       <LazyMotion features={domAnimation}>
         <m.div
