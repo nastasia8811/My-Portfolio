@@ -51,6 +51,199 @@ const SHAPE_FORCE = 40
 const LETTER_THRESHOLD = 120
 const LETTER_FORCE = 25
 
+const STICKER_SPRING = { stiffness: 200, damping: 20 }
+const STICKER_THRESHOLD = 200
+const STICKER_FORCE = 50
+
+interface StickerDef {
+  id: number
+  src: string
+  srcSet: string
+  alt: string
+  left: string
+  top: string
+  width: string
+  maxWidth: number
+  rotation: number
+}
+
+const STICKERS: StickerDef[] = [
+  {
+    id: 0,
+    src: 'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse.webp',
+    srcSet:
+      'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse.webp 1359w',
+    alt: 'Shiny crumpled metallic blue foil sheet on black background.',
+    left: '3%',
+    top: '8%',
+    width: '18vw',
+    maxWidth: 220,
+    rotation: 0
+  },
+  {
+    id: 1,
+    src: 'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing.webp',
+    srcSet:
+      'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing.webp 1250w',
+    alt: 'Close-up of a swirl of smooth pink frosting or cream against a transparent background.',
+    left: '80%',
+    top: '3%',
+    width: '14vw',
+    maxWidth: 180,
+    rotation: 0
+  },
+  {
+    id: 2,
+    src: 'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon.webp',
+    srcSet:
+      'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-2000.webp 2000w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon.webp 2048w',
+    alt: 'Candy wrapped in shiny silver foil with twisted ends on a white background.',
+    left: '5%',
+    top: '72%',
+    width: '16vw',
+    maxWidth: 200,
+    rotation: 112
+  },
+  {
+    id: 3,
+    src: 'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix.webp',
+    srcSet:
+      'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix.webp 2048w',
+    alt: 'Shiny black balloon shaped like an asterisk symbol on a white background.',
+    left: '78%',
+    top: '32%',
+    width: '18vw',
+    maxWidth: 240,
+    rotation: 0
+  },
+  {
+    id: 4,
+    src: 'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb.webp',
+    srcSet:
+      'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-2000.webp 2000w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb.webp 2048w',
+    alt: 'Heart-shaped object made of transparent bubble wrap in black and white.',
+    left: '70%',
+    top: '75%',
+    width: '16vw',
+    maxWidth: 220,
+    rotation: -18
+  }
+]
+
+interface NameLetterDef {
+  id: number
+  letter: string
+  left: string
+  top: string
+  fontSize: string
+  rotation: number
+  colorKey: keyof ThemeColors
+  opacity: number
+}
+
+const NAME_LETTERS: NameLetterDef[] = [
+  {
+    id: 0,
+    letter: 'A',
+    left: '20%',
+    top: '12%',
+    fontSize: '5vw',
+    rotation: -15,
+    colorKey: 'accent',
+    opacity: 0.5
+  },
+  {
+    id: 1,
+    letter: 'N',
+    left: '52%',
+    top: '5%',
+    fontSize: '4vw',
+    rotation: 8,
+    colorKey: 'primary',
+    opacity: 0.45
+  },
+  {
+    id: 2,
+    letter: 'A',
+    left: '82%',
+    top: '14%',
+    fontSize: '5.5vw',
+    rotation: 12,
+    colorKey: 'secondaryText',
+    opacity: 0.5
+  },
+  {
+    id: 3,
+    letter: 'S',
+    left: '6%',
+    top: '45%',
+    fontSize: '4.5vw',
+    rotation: -10,
+    colorKey: 'primary',
+    opacity: 0.45
+  },
+  {
+    id: 4,
+    letter: 'T',
+    left: '60%',
+    top: '38%',
+    fontSize: '4vw',
+    rotation: 20,
+    colorKey: 'accent',
+    opacity: 0.5
+  },
+  {
+    id: 5,
+    letter: 'A',
+    left: '88%',
+    top: '55%',
+    fontSize: '5vw',
+    rotation: -8,
+    colorKey: 'secondaryText',
+    opacity: 0.45
+  },
+  {
+    id: 6,
+    letter: 'S',
+    left: '22%',
+    top: '80%',
+    fontSize: '4.5vw',
+    rotation: 15,
+    colorKey: 'accent',
+    opacity: 0.5
+  },
+  {
+    id: 7,
+    letter: 'I',
+    left: '48%',
+    top: '86%',
+    fontSize: '3.5vw',
+    rotation: -5,
+    colorKey: 'primary',
+    opacity: 0.45
+  },
+  {
+    id: 8,
+    letter: 'I',
+    left: '68%',
+    top: '82%',
+    fontSize: '3.5vw',
+    rotation: 10,
+    colorKey: 'secondaryText',
+    opacity: 0.5
+  },
+  {
+    id: 9,
+    letter: 'A',
+    left: '38%',
+    top: '62%',
+    fontSize: '5vw',
+    rotation: -18,
+    colorKey: 'accent',
+    opacity: 0.45
+  }
+]
+
 /* ── hooks ───────────────────────────────────────────────────── */
 
 const useRepulsion = (
@@ -165,6 +358,98 @@ const MagneticLetter = ({
   )
 }
 
+const FloatingSticker = ({
+  sticker,
+  cursorX,
+  cursorY,
+  shouldAnimate
+}: {
+  sticker: StickerDef
+  cursorX: MotionValue<number>
+  cursorY: MotionValue<number>
+  shouldAnimate: boolean
+}) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const { x, y } = useRepulsion(
+    cursorX,
+    cursorY,
+    ref,
+    STICKER_THRESHOLD,
+    STICKER_FORCE,
+    shouldAnimate,
+    STICKER_SPRING
+  )
+
+  return (
+    <m.div
+      ref={ref}
+      className='absolute'
+      style={{
+        left: sticker.left,
+        top: sticker.top,
+        width: sticker.width,
+        maxWidth: sticker.maxWidth,
+        x,
+        y,
+        rotate: sticker.rotation
+      }}
+    >
+      <img
+        src={sticker.src}
+        srcSet={sticker.srcSet}
+        alt={sticker.alt}
+        loading='eager'
+        sizes='100vw'
+        className='h-auto w-full'
+      />
+    </m.div>
+  )
+}
+
+const ScatteredLetter = ({
+  def,
+  color,
+  cursorX,
+  cursorY,
+  shouldAnimate
+}: {
+  def: NameLetterDef
+  color: string
+  cursorX: MotionValue<number>
+  cursorY: MotionValue<number>
+  shouldAnimate: boolean
+}) => {
+  const ref = useRef<HTMLSpanElement>(null)
+  const { x, y } = useRepulsion(
+    cursorX,
+    cursorY,
+    ref,
+    LETTER_THRESHOLD,
+    LETTER_FORCE,
+    shouldAnimate,
+    LETTER_SPRING
+  )
+
+  return (
+    <m.span
+      ref={ref}
+      className='absolute font-bold select-none'
+      style={{
+        left: def.left,
+        top: def.top,
+        fontSize: def.fontSize,
+        color,
+        opacity: def.opacity,
+        x,
+        y,
+        rotate: def.rotation
+      }}
+    >
+      {def.letter}
+    </m.span>
+  )
+}
+
 /* ── main component ──────────────────────────────────────────── */
 
 const Effects = () => {
@@ -238,6 +523,30 @@ const Effects = () => {
             />
           ))}
         </h2>
+        {/* Decorative stickers — repel on hover */}
+        <div aria-hidden='true' className='pointer-events-none absolute inset-0 overflow-hidden'>
+          {STICKERS.map(sticker => (
+            <FloatingSticker
+              key={sticker.id}
+              sticker={sticker}
+              cursorX={cursorX}
+              cursorY={cursorY}
+              shouldAnimate={shouldAnimate}
+            />
+          ))}
+
+          {/* Scattered name letters — ANASTASIIA */}
+          {NAME_LETTERS.map(def => (
+            <ScatteredLetter
+              key={def.id}
+              def={def}
+              color={colors[def.colorKey]}
+              cursorX={cursorX}
+              cursorY={cursorY}
+              shouldAnimate={shouldAnimate}
+            />
+          ))}
+        </div>
       </section>
     </LazyMotion>
   )
