@@ -10,14 +10,16 @@ import type { UIMessage } from 'ai'
 const mockSendMessage = vi.fn()
 const mockSetMessages = vi.fn()
 let mockMessages: UIMessage[] = []
-let mockStatus: 'ready' | 'submitted' | 'streaming' = 'ready'
+let mockStatus: 'ready' | 'submitted' | 'streaming' | 'error' = 'ready'
+let mockError: Error | undefined = undefined
 
 vi.mock('@ai-sdk/react', () => ({
   useChat: () => ({
     messages: mockMessages,
     sendMessage: mockSendMessage,
     status: mockStatus,
-    setMessages: mockSetMessages
+    setMessages: mockSetMessages,
+    error: mockError
   })
 }))
 
@@ -61,6 +63,7 @@ const openChat = async () => {
 beforeEach(() => {
   mockMessages = []
   mockStatus = 'ready'
+  mockError = undefined
   mockSendMessage.mockClear()
   mockSetMessages.mockClear()
 })
@@ -529,6 +532,25 @@ describe('PortfolioChat', () => {
       expect(input).toHaveValue('draft')
       await user.selectOptions(screen.getByRole('combobox'), 'project-b')
       expect(input).toHaveValue('')
+    })
+  })
+
+  describe('error state', () => {
+    it('displays an error banner when error is present', async () => {
+      mockError = new Error('Request failed')
+      await openChat()
+      expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong. Please try again.')
+    })
+
+    it('does not display error banner when there is no error', async () => {
+      await openChat()
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    })
+
+    it('keeps the input enabled when an error occurs', async () => {
+      mockError = new Error('Request failed')
+      await openChat()
+      expect(screen.getByPlaceholderText('Type a message...')).not.toBeDisabled()
     })
   })
 

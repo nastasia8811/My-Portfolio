@@ -13,20 +13,23 @@ const USE_MOCK = process.env.CHAT_MOCK === 'true'
 
 type ChatMode = 'general' | 'project'
 
-const chatRequestSchema = z.object({
-  messages: z
-    .array(
-      z
-        .object({
-          role: z.enum(['user', 'assistant']),
-          content: z.string()
-        })
-        .passthrough()
-    )
-    .min(1),
-  mode: z.enum(['general', 'project']).default('general'),
-  projectId: z.string().optional()
-})
+const chatRequestSchema = z
+  .object({
+    messages: z
+      .array(
+        z
+          .object({
+            id: z.string(),
+            role: z.enum(['user', 'assistant', 'system']),
+            parts: z.array(z.object({ type: z.string() }).passthrough()).min(1)
+          })
+          .passthrough()
+      )
+      .min(1),
+    mode: z.enum(['general', 'project']).default('general'),
+    projectId: z.string().optional()
+  })
+  .passthrough()
 
 export const buildSystemPrompt = (mode: ChatMode, projectId?: string): string => {
   const { developer, experience, education } = getDeveloperInfo()
@@ -137,10 +140,10 @@ export const POST = async (req: Request) => {
   }
 
   const systemPrompt = buildSystemPrompt(mode, projectId)
-  const modelMessages = await convertToModelMessages(messages as unknown as UIMessage[])
+  const modelMessages = await convertToModelMessages(messages as UIMessage[])
 
   const result = streamText({
-    model: anthropic('claude-sonnet-4-20250514'),
+    model: anthropic('claude-sonnet-4-5-20250929'),
     system: systemPrompt,
     messages: modelMessages
   })

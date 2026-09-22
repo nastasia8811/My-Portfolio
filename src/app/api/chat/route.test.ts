@@ -52,9 +52,43 @@ describe('POST handler', () => {
     const { POST } = await import('./route')
     const req = new Request('http://localhost/api/chat', {
       method: 'POST',
-      body: JSON.stringify({ messages: [], mode: 'general' })
+      body: JSON.stringify({
+        messages: [{ id: '1', role: 'user', parts: [{ type: 'text', text: 'Hello' }] }],
+        mode: 'general'
+      })
     })
     const response = await POST(req)
     expect(response).toBeInstanceOf(Response)
+  })
+
+  it('returns 400 on invalid body', async () => {
+    const { POST } = await import('./route')
+    const req = new Request('http://localhost/api/chat', {
+      method: 'POST',
+      body: JSON.stringify({ messages: 'not-an-array' })
+    })
+    const response = await POST(req)
+    expect(response.status).toBe(400)
+  })
+
+  it('accepts UIMessage format with parts array', async () => {
+    const { POST } = await import('./route')
+    const req = new Request('http://localhost/api/chat', {
+      method: 'POST',
+      body: JSON.stringify({
+        messages: [
+          { id: 'msg-1', role: 'user', parts: [{ type: 'text', text: 'Hi' }] },
+          {
+            id: 'msg-2',
+            role: 'assistant',
+            parts: [{ type: 'text', text: 'Hello!' }]
+          }
+        ],
+        mode: 'general'
+      })
+    })
+    const response = await POST(req)
+    expect(response).toBeInstanceOf(Response)
+    expect(response.status).not.toBe(400)
   })
 })

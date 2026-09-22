@@ -46,7 +46,7 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
     [mode, selectedProjectSlug]
   )
 
-  const { messages, sendMessage, status, setMessages } = useChat({
+  const { messages, sendMessage, status, setMessages, error } = useChat({
     transport,
     messages: history[historyKey] ?? []
   })
@@ -247,6 +247,16 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
               >
                 Thinking...
               </div>
+            </div>
+          )}
+
+          {error && (
+            <div
+              className='mx-auto max-w-[90%] rounded-lg bg-red-50 px-3.5 py-2.5 text-center
+                text-[13px] text-red-600 ring-1 ring-red-200'
+              role='alert'
+            >
+              Something went wrong. Please try again.
             </div>
           )}
 
