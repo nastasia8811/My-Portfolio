@@ -92,20 +92,33 @@ Focus your answers on this project while still being able to reference Anastasii
 ${projectList}`
 }
 
-const MOCK_RESPONSES: Record<string, string> = {
-  general:
-    'Anastasiia is a Frontend Engineer based in Hamburg, Germany with 3 years of experience. ' +
-    'She specializes in React 18, Next.js App Router, and TypeScript. ' +
-    'She previously worked at PINKTUM (AI SaaS) and Neuland (e-commerce). ' +
-    'Her unique strength is combining strong business communication skills with clean, performant code.',
-  project:
-    'This project showcases modern frontend techniques including Next.js 15, TypeScript, ' +
-    'Tailwind CSS, and Framer Motion. It was built with a focus on performance, ' +
-    'accessibility, and a smooth user experience.'
+const buildMockText = (mode: ChatMode, projectId?: string): string => {
+  const { developer, experience } = getDeveloperInfo()
+  const companies = experience
+    .filter(
+      e => e.title.toLowerCase().includes('engineer') || e.title.toLowerCase().includes('developer')
+    )
+    .map(e => e.company)
+    .join(' and ')
+
+  if (mode === 'project' && projectId) {
+    const project = getProjectBySlug(projectId)
+    if (project) {
+      return (
+        `${project.name} is built with ${project.techStack.join(', ')}. ` + `${project.description}`
+      )
+    }
+  }
+
+  return (
+    `${developer.name} is a ${developer.title} based in ${developer.location} ` +
+    `with ${developer.yearsOfExperience}+ years of experience. ` +
+    `She previously worked at ${companies}. ${developer.summary}`
+  )
 }
 
-const mockResponse = (mode: ChatMode) => {
-  const text = MOCK_RESPONSES[mode] ?? MOCK_RESPONSES.general
+const mockResponse = (mode: ChatMode, projectId?: string) => {
+  const text = buildMockText(mode, projectId)
   const words = text.split(' ')
 
   const stream = createUIMessageStream({
@@ -136,7 +149,7 @@ export const POST = async (req: Request) => {
   const { messages, mode, projectId } = parsed.data
 
   if (USE_MOCK) {
-    return mockResponse(mode)
+    return mockResponse(mode, projectId)
   }
 
   const systemPrompt = buildSystemPrompt(mode, projectId)
