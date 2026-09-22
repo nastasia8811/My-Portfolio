@@ -55,7 +55,7 @@ export const portfolioData: PortfolioData = {
     summary:
       'I build interfaces people actually enjoy using. Experienced in React 18, Next.js App Router, TypeScript, and modern frontend tooling. I care about the small things — the transition that feels right, the component that is a joy to reuse, the codebase your future self will not curse.',
     skills: SKILL_CATEGORIES,
-    yearsOfExperience: 3,
+    yearsOfExperience: 2.2,
     contacts: {
       email: 'melnykk.ana@gmail.com',
       github: 'https://github.com/nastasia8811',
@@ -67,7 +67,7 @@ export const portfolioData: PortfolioData = {
     {
       company: 'PINKTUM',
       title: 'Frontend Engineer',
-      period: '08.2024 - 10.2025',
+      period: '01.08.2024 - 31.10.2025',
       description:
         'AI-powered SaaS e-learning platform used by enterprise clients across multiple countries.',
       highlights: [
@@ -78,7 +78,19 @@ export const portfolioData: PortfolioData = {
       ]
     },
     {
-      company: 'Neuland',
+      company: 'Relocation & Upskilling',
+      title: 'Bremen → Hamburg',
+      period: '07.2023 - 06.2024',
+      description:
+        'Relocated from Bremen to Hamburg (07.2023 - 12.2023); upskilled at ReDI School (03.2024 - 06.2024), focusing on backend fundamentals (Node.js, Express.js).',
+      highlights: [
+        'Relocated from Bremen to Hamburg, including settling in and handling German administrative processes',
+        'Studied backend development at ReDI School (03.2024 - 06.2024) with a focus on Node.js and Express.js',
+        'Built foundational backend skills that later supported full-stack work'
+      ]
+    },
+    {
+      company: 'neuland - buro fur informatik',
       title: 'Frontend Developer',
       period: '07.2022 - 06.2023',
       description: 'E-commerce agency in Bremen building custom web solutions for clients.',
@@ -123,11 +135,16 @@ export const portfolioData: PortfolioData = {
 
   education: [
     {
-      institution: 'DCI Digital Career Institute',
-      degree: 'Web Development Bootcamp',
+      institution: 'Dan.It Education',
+      degree: 'Frontend Development course',
       period: '2021 - 2022',
       description:
-        'Intensive full-stack web development program covering JavaScript, React, Node.js, and modern web technologies.'
+        'Intensive Frontend Development program covering JavaScript, React, Node.js, and modern web technologies.'
+    },
+    {
+      institution: 'Central Ukrainian National Technical University',
+      degree: 'Faculty of Economics and Entrepreneurship, specialization in Finance',
+      period: '2005 - 2010'
     }
   ],
 
@@ -171,14 +188,6 @@ export const portfolioData: PortfolioData = {
       ],
       githubUrl: 'https://github.com/nastasia8811/My-Portfolio',
       liveUrl: 'https://anastasiia-melnyk.vercel.app'
-    },
-    {
-      slug: 'ecoswap',
-      name: 'EcoSwap',
-      description:
-        'A sustainable event platform connecting communities for eco-friendly item exchanges. Full-stack application with separate frontend and backend repositories.',
-      techStack: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB'],
-      githubUrl: 'https://github.com/nastasia8811/EcoSwap-frontend'
     }
   ]
 }
