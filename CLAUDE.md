@@ -5,7 +5,7 @@
 - **Framework**: Next.js 15 (App Router) with Turbopack
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4 — no inline styles, no CSS modules
-- **Animation**: Framer Motion / Motion
+- **Animation**: Motion (`motion/react`)
 - **State**: React Query (`@tanstack/react-query`), React Context for theme
 - **AI Chat**: Vercel AI SDK + Anthropic (`@ai-sdk/anthropic`)
 - **Validation**: Zod v4
@@ -40,6 +40,13 @@ src/
 - **Styling**: Tailwind only. Brand colors via `brand-50` through `brand-900`. Dark mode via `.dark` class
 - **ESLint rules**: `func-style: expression`, `prefer-arrow-functions`, `no-console` (warn/error/info allowed)
 - **Formatting**: Prettier handles it — single quotes in JSX, no manual formatting
+
+## Verification
+
+- **Do not run checks during work.** After making a change, stop. Do not run `npm test`, `npm run build`, `npm run lint`, or `npx tsc --noEmit` to "confirm" it, and do not launch the `pre-commit-runner` agent on your own.
+- The Husky pre-commit hook (lint-staged + `npm test`) is the verification step. Checks happen there, at commit time.
+- Run a check only when explicitly asked, or when a failing commit hook needs to be diagnosed and fixed.
+- When reporting a change, say plainly that it has not been tested yet instead of running checks to find out.
 
 ## Commands
 
@@ -76,4 +83,4 @@ Handles staging, re-staging after pre-commit hook fixes, and crafting clean comm
 
 ### `pre-commit-runner` — Run pre-commit checks
 
-Runs the full pre-commit pipeline on changed files: ESLint with `--fix`, Prettier with `--write`, then Vitest. Reports auto-fixed issues, remaining errors, and test results. Use proactively after writing code.
+Runs the full pre-commit pipeline on changed files: ESLint with `--fix`, Prettier with `--write`, then Vitest. Reports auto-fixed issues, remaining errors, and test results. Use only when explicitly asked — never proactively.
