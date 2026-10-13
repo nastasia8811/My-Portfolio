@@ -48,6 +48,11 @@ src/
 - Run a check only when explicitly asked, or when a failing commit hook needs to be diagnosed and fixed.
 - When reporting a change, say plainly that it has not been tested yet instead of running checks to find out.
 
+## Git
+
+- **Never create or switch branches unless explicitly asked.** Commit on whatever branch is currently checked out, including `master`.
+- Do not push unless explicitly asked.
+
 ## Commands
 
 ```bash
