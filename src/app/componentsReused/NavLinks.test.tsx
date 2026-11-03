@@ -15,13 +15,19 @@ vi.mock('next/link', () => ({
 }))
 
 describe('NavLinks', () => {
-  it('renders three navigation links', () => {
+  it('renders four navigation links', () => {
     render(<NavLinks />)
-    expect(screen.getAllByRole('link')).toHaveLength(3)
+    expect(screen.getAllByRole('link')).toHaveLength(4)
+  })
+
+  it('renders Playground as the first link', () => {
+    render(<NavLinks />)
+    expect(screen.getAllByRole('link')[0]).toHaveTextContent('Playground')
   })
 
   it('renders correct labels', () => {
     render(<NavLinks />)
+    expect(screen.getByText('Playground')).toBeInTheDocument()
     expect(screen.getByText('My Projects')).toBeInTheDocument()
     expect(screen.getByText('About')).toBeInTheDocument()
     expect(screen.getByText('Contact me')).toBeInTheDocument()
@@ -29,6 +35,7 @@ describe('NavLinks', () => {
 
   it('links point to correct anchors', () => {
     render(<NavLinks />)
+    expect(screen.getByText('Playground')).toHaveAttribute('href', '#playground')
     expect(screen.getByText('My Projects')).toHaveAttribute('href', '#projects')
     expect(screen.getByText('About')).toHaveAttribute('href', '#about')
     expect(screen.getByText('Contact me')).toHaveAttribute('href', '#contact')
