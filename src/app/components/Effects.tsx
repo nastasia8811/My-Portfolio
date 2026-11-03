@@ -74,10 +74,10 @@ const STICKERS: StickerDef[] = [
     srcSet:
       'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf3288a762026817436_papier-froisse.webp 1359w',
     alt: 'Shiny crumpled metallic blue foil sheet on black background.',
-    left: '3%',
+    left: '18%',
     top: '8%',
-    width: '18vw',
-    maxWidth: 220,
+    width: 'max(26vw, 150px)',
+    maxWidth: 400,
     rotation: 0
   },
   {
@@ -86,10 +86,10 @@ const STICKERS: StickerDef[] = [
     srcSet:
       'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101c34913dd6111b16324e_chwing.webp 1250w',
     alt: 'Close-up of a swirl of smooth pink frosting or cream against a transparent background.',
-    left: '80%',
-    top: '3%',
-    width: '14vw',
-    maxWidth: 180,
+    left: '58%',
+    top: '4%',
+    width: 'max(24vw, 140px)',
+    maxWidth: 360,
     rotation: 0
   },
   {
@@ -99,9 +99,9 @@ const STICKERS: StickerDef[] = [
       'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon-p-2000.webp 2000w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4d60716b3d6959657_bonbon.webp 2048w',
     alt: 'Candy wrapped in shiny silver foil with twisted ends on a white background.',
     left: '5%',
-    top: '72%',
-    width: '16vw',
-    maxWidth: 200,
+    top: '64%',
+    width: 'max(26vw, 150px)',
+    maxWidth: 400,
     rotation: 112
   },
   {
@@ -110,10 +110,10 @@ const STICKERS: StickerDef[] = [
     srcSet:
       'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf33377567d8f2bd507_asterix.webp 2048w',
     alt: 'Shiny black balloon shaped like an asterisk symbol on a white background.',
-    left: '78%',
-    top: '32%',
-    width: '18vw',
-    maxWidth: 240,
+    left: '68%',
+    top: '34%',
+    width: 'max(26vw, 150px)',
+    maxWidth: 400,
     rotation: 0
   },
   {
@@ -122,10 +122,10 @@ const STICKERS: StickerDef[] = [
     srcSet:
       'https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-500.webp 500w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-800.webp 800w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-1080.webp 1080w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-1600.webp 1600w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb-p-2000.webp 2000w, https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a101bf4026551468ed05521_coeur-bulle-nb.webp 2048w',
     alt: 'Heart-shaped object made of transparent bubble wrap in black and white.',
-    left: '70%',
-    top: '75%',
-    width: '16vw',
-    maxWidth: 220,
+    left: '54%',
+    top: '60%',
+    width: 'max(28vw, 160px)',
+    maxWidth: 440,
     rotation: -18
   }
 ]
@@ -488,7 +488,7 @@ const Effects = () => {
     <LazyMotion features={domAnimation}>
       <section
         ref={sectionRef}
-        id='effects'
+        id='playground'
         className='relative flex min-h-screen items-center justify-center'
         style={{ background: colors.background }}
       >
@@ -508,21 +508,30 @@ const Effects = () => {
           ))}
         </div>
 
-        <h2
-          aria-label='Hello!'
-          className='relative z-10 text-6xl font-bold tracking-tight sm:text-8xl'
-          style={{ color: colors.primary }}
-        >
-          {LETTERS.map((letter, i) => (
-            <MagneticLetter
-              key={i}
-              letter={letter}
-              cursorX={cursorX}
-              cursorY={cursorY}
-              shouldAnimate={shouldAnimate}
-            />
-          ))}
-        </h2>
+        <div className='relative z-10 flex flex-col items-center px-4 text-center'>
+          <h2
+            aria-label='Hello!'
+            className='text-6xl font-bold tracking-tight sm:text-8xl'
+            style={{ color: colors.primary }}
+          >
+            {LETTERS.map((letter, i) => (
+              <MagneticLetter
+                key={i}
+                letter={letter}
+                cursorX={cursorX}
+                cursorY={cursorY}
+                shouldAnimate={shouldAnimate}
+              />
+            ))}
+          </h2>
+          <p
+            className='mt-4 max-w-md text-base sm:mt-6 sm:text-lg'
+            style={{ color: colors.secondaryText }}
+          >
+            I build fast, accessible interfaces, and I like it when they move. Try touching the
+            letters and stickers.
+          </p>
+        </div>
         {/* Decorative stickers — repel on hover */}
         <div aria-hidden='true' className='pointer-events-none absolute inset-0 overflow-hidden'>
           {STICKERS.map(sticker => (

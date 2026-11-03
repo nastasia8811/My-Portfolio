@@ -10,6 +10,13 @@ describe('Effects', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Hello!' })).toBeInTheDocument()
   })
 
+  it('renders the intro line under the heading', () => {
+    renderWithTheme(<Effects />)
+    expect(
+      screen.getByText(/I build fast, accessible interfaces, and I like it when they move/)
+    ).toBeInTheDocument()
+  })
+
   it('wraps content in a section with shapes and text layers', () => {
     const { container } = renderWithTheme(<Effects />)
     const section = container.querySelector('section')
