@@ -46,6 +46,13 @@ describe('ProjectCard', () => {
     expect(demoLink).toHaveAttribute('href', 'https://example.com')
   })
 
+  it('renders a custom label for the demo link when demoLabel is provided', () => {
+    renderWithTheme(<ProjectCard {...baseProps} demoLabel='Live site' />)
+    const liveLink = screen.getByText('Live site')
+    expect(liveLink).toHaveAttribute('href', 'https://example.com')
+    expect(screen.queryByText('Demo')).not.toBeInTheDocument()
+  })
+
   it('renders a GitHub link when codeHref is provided', () => {
     renderWithTheme(<ProjectCard {...baseProps} codeHref='https://github.com/test' />)
     const githubLink = screen.getByText('GitHub')

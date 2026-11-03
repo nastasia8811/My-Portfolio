@@ -11,6 +11,7 @@ type ProjectCardProps = {
   coverSrc: string
   coverAlt: string
   demoHref: string
+  demoLabel?: string
   codeHref?: string
   tech?: string[]
 }
@@ -21,6 +22,7 @@ const ProjectCard = ({
   coverSrc,
   coverAlt,
   demoHref,
+  demoLabel = 'Demo',
   codeHref,
   tech
 }: ProjectCardProps) => {
@@ -39,7 +41,7 @@ const ProjectCard = ({
     >
       <Link
         href={demoHref}
-        aria-label={`${title} – Demo`}
+        aria-label={`${title} – ${demoLabel}`}
         target='_blank'
         rel='noopener noreferrer'
         className='block flex-shrink-0 focus:outline-none'
@@ -97,7 +99,7 @@ const ProjectCard = ({
               background: colors.buttonBackground
             }}
           >
-            Demo
+            {demoLabel}
           </Link>
 
           {codeHref ? (

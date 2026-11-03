@@ -153,8 +153,18 @@ export const portfolioData: PortfolioData = {
       slug: 'anna-wiebe-portfolio',
       name: 'Anna Wiebe - Artist Portfolio',
       description:
-        'A bilingual artist portfolio featuring a velocity-reactive infinite-scroll gallery, scroll-triggered CSS animations, and an immersive exhibition showcase. Created as a landing page for the artist.',
-      techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vitest'],
+        'Completed client project for painter Anna Wiebe, built end to end (requirements, UI design, development, testing, deployment). A German single-page portfolio presenting her paintings, biography and exhibitions, plus Impressum and Datenschutz pages. Features a scroll-reactive artwork gallery that can be paused and respects reduced motion, full keyboard accessibility, images optimized from 55 MB to about 2 MB per page load with GPS/camera metadata removed, one-click email copy and tap-to-call, and SEO setup (Open Graph, sitemap, Search Console). Lighthouse mobile: Performance 100, SEO 100, Best Practices 96, Accessibility 96.',
+      techStack: [
+        'Next.js 15',
+        'React 19',
+        'TypeScript',
+        'Tailwind CSS',
+        'Framer Motion',
+        'Vitest',
+        'React Testing Library',
+        'Biome',
+        'Vercel'
+      ],
       liveUrl: 'https://www.annawiebe.de'
     },
     {

@@ -44,6 +44,7 @@ const Projects = () => {
                 coverSrc={project.coverSrc}
                 coverAlt={project.coverAlt}
                 demoHref={project.demoHref}
+                demoLabel={project.demoLabel}
                 codeHref={project.codeHref}
                 tech={project.tech}
               />

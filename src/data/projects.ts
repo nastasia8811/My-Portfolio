@@ -5,6 +5,7 @@ export type Project = {
   coverSrc: string
   coverAlt: string
   demoHref: string
+  demoLabel?: string
   codeHref?: string
   tech?: string[]
 }
@@ -14,12 +15,22 @@ export const projects = [
     slug: 'anna-wiebe-portfolio',
     title: 'Anna Wiebe — Artist Portfolio',
     description:
-      'A bilingual artist portfolio featuring a velocity-reactive infinite-scroll gallery, scroll-triggered CSS animations,' +
-      'and an immersive exhibition showcase. Created as a landing page for the artist, with plans to grow it into a full website.',
+      'Client project built end to end for painter Anna Wiebe: a German single-page portfolio with a scroll-reactive, ' +
+      'pausable artwork gallery and full keyboard accessibility. Images cut from 55 MB to about 2 MB per page load; ' +
+      'Lighthouse mobile scores 100 for Performance and SEO.',
     coverSrc: '/anna-wiebe.png',
     coverAlt: 'Anna Wiebe artist portfolio website',
     demoHref: 'https://www.annawiebe.de',
-    tech: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vitest']
+    demoLabel: 'Live site',
+    tech: [
+      'Next.js 15',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Vitest',
+      'Vercel'
+    ]
   },
   {
     slug: 'movie-explorer',
