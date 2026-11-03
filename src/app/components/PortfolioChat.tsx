@@ -27,7 +27,7 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
   const [mode, setMode] = useState<ChatMode>('general')
   const [selectedProjectSlug, setSelectedProjectSlug] = useState(projects[0]?.slug ?? '')
   const [input, setInput] = useState('')
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   // Store message history per mode/project so switching tabs preserves conversations
   const [history, setHistory] = useState<Record<string, UIMessage[]>>({})
@@ -62,9 +62,12 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
     prevMessagesRef.current = messages
   }, [messages, historyKey])
 
+  // Scroll only the messages list — scrollIntoView would also scroll the page on mobile
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages])
+    const container = messagesContainerRef.current
+    if (!container) return
+    container.scrollTo?.({ top: container.scrollHeight, behavior: 'smooth' })
+  }, [messages, status])
 
   const onModeChange = useCallback(
     (newMode: ChatMode) => {
@@ -140,8 +143,10 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
 
       {/* Chat panel — hidden via CSS instead of unmounting to preserve state */}
       <div
-        className={`fixed bottom-[92px] right-6 z-[999] w-[min(400px,calc(100vw-48px))]
-          h-[min(560px,calc(100vh-140px))] overflow-hidden rounded-2xl
+        className={`fixed bottom-[88px] right-3 z-[999] w-[calc(100vw-24px)]
+          h-[min(560px,calc(100dvh-112px))] overflow-hidden rounded-2xl
+          sm:bottom-[92px] sm:right-6 sm:w-[min(400px,calc(100vw-48px))]
+          sm:h-[min(560px,calc(100dvh-140px))]
           shadow-[0_8px_40px_rgba(0,0,0,0.2)] ${isOpen ? 'flex' : 'hidden'} flex-col`}
         style={{ border: `1px solid ${colors.secondaryText}33` }}
       >
@@ -193,7 +198,8 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
 
         {/* Messages area */}
         <div
-          className='flex flex-1 flex-col gap-3 overflow-y-auto px-4 pt-4 pb-2'
+          ref={messagesContainerRef}
+          className='flex flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-4 pt-4 pb-2'
           style={{ background: colors.background }}
         >
           {messages.length === 0 && (
@@ -259,8 +265,6 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
               Something went wrong. Please try again.
             </div>
           )}
-
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Input area */}
@@ -277,8 +281,8 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
             onChange={e => setInput(e.target.value)}
             placeholder='Type a message...'
             disabled={isLoading}
-            className='flex-1 rounded-[10px] bg-transparent px-3.5 py-2.5 text-[13px]
-              outline-none focus:[border-color:var(--accent)]'
+            className='min-w-0 flex-1 rounded-[10px] bg-transparent px-3.5 py-2.5 text-base
+              outline-none focus:[border-color:var(--accent)] sm:text-[13px]'
             style={{
               border: `1px solid ${colors.secondaryText}33`,
               color: colors.text
