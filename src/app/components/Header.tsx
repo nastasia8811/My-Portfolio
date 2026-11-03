@@ -7,7 +7,7 @@ import ModeButton from '@/app/components/ModeButton'
 import NavLinks from '@/app/componentsReused/NavLinks'
 
 const Header = () => {
-  const { colors } = useTheme()
+  const { colors, theme } = useTheme()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [revealed, setRevealed] = useState(false)
@@ -62,7 +62,7 @@ const Header = () => {
             </m.h3>
 
             <m.nav
-              className='hidden md:flex space-x-6'
+              className='hidden md:flex space-x-6 text-white'
               initial={{ opacity: 0, x: 20 }}
               animate={revealed ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
               transition={{ duration: 0.4, delay: 0.05, ease: 'easeOut' }}
@@ -110,11 +110,12 @@ const Header = () => {
       ${menuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}
       backdrop-blur-sm
     `}
+            style={{ color: theme === 'light' ? colors.text : '#FFFFFF' }}
           >
             <button
               type='button'
               onClick={() => setMenuOpen(false)}
-              className='absolute top-5 right-5 text-3xl text-white dark:text-zinc-200'
+              className={`absolute top-5 right-5 text-3xl ${theme === 'light' ? '' : 'text-zinc-200'}`}
               aria-label='Close menu'
             >
               ✕
