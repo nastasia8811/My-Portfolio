@@ -8,6 +8,7 @@
 - **Animation**: Motion (`motion/react`)
 - **State**: React Query (`@tanstack/react-query`), React Context for theme
 - **AI Chat**: `useChat` from `@ai-sdk/react` in `PortfolioChat.tsx`, calling the external API in [nastasia8811/chat](https://github.com/nastasia8811/chat). The URL comes from `NEXT_PUBLIC_CHAT_API_URL` and falls back to the production chat API. There is no local `/api/chat` route — chat backend changes belong in the chat repo
+- **Content source**: `src/data/projects.ts` and `src/data/skillCategories.ts` are the only places that hold project and skill content. `src/lib/portfolio-data.ts` builds the chat data from them, and `GET /api/portfolio` serves it as JSON. The chat API loads that endpoint at runtime, so edit content here, never in the chat repo
 - **Testing**: Vitest + React Testing Library + happy-dom
 - **Linting**: ESLint (flat config) + Prettier
 - **Pre-commit**: Husky + lint-staged (runs `eslint --fix` on JS/TS, `prettier --write` on CSS/MD, then `npm test`)
@@ -17,6 +18,7 @@
 ```
 src/
 ├── app/                    # Next.js App Router
+│   ├── api/portfolio/      # GET → portfolio data as JSON (read by the chat API)
 │   ├── components/         # Page-specific components
 │   ├── componentsReused/   # Shared/reusable components
 │   ├── context/            # React contexts (ThemeContext)
@@ -26,7 +28,7 @@ src/
 │   ├── theme.ts            # Theme colours
 │   ├── layout.tsx          # Root layout
 │   └── page.tsx            # Home page
-├── data/                   # UI data: projects (covers, links), skill categories
+├── data/                   # Content source: projects (card + chat fields), skill categories
 ├── lib/                    # Portfolio content, data helpers, Motion variants
 └── test/                   # Test setup and helpers
     ├── setup.tsx           # Vitest global setup + mocks

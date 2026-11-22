@@ -53,6 +53,14 @@ describe('ProjectCard', () => {
     expect(screen.queryByText('Demo')).not.toBeInTheDocument()
   })
 
+  it('renders no demo link when demoHref is absent', () => {
+    const { demoHref: _demoHref, ...props } = baseProps
+    renderWithTheme(<ProjectCard {...props} />)
+    expect(screen.queryByText('Demo')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.getByAltText('Test project cover')).toBeInTheDocument()
+  })
+
   it('renders a GitHub link when codeHref is provided', () => {
     renderWithTheme(<ProjectCard {...baseProps} codeHref='https://github.com/test' />)
     const githubLink = screen.getByText('GitHub')

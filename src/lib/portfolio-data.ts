@@ -1,3 +1,4 @@
+import { projects } from '@/data/projects'
 import { SKILL_CATEGORIES, type SkillCategory } from '@/data/skillCategories'
 
 export type Experience = {
@@ -149,84 +150,13 @@ export const portfolioData: PortfolioData = {
     }
   ],
 
-  projects: [
-    {
-      slug: 'anna-wiebe-portfolio',
-      name: 'Anna Wiebe - Artist Portfolio',
-      description:
-        'Completed client project for painter Anna Wiebe, built end to end (requirements, UI design, development, testing, deployment). A German single-page portfolio presenting her paintings, biography and exhibitions, plus Impressum and Datenschutz pages. Features a scroll-reactive artwork gallery that can be paused and respects reduced motion, full keyboard accessibility, images optimized from 55 MB to about 2 MB per page load with GPS/camera metadata removed, one-click email copy and tap-to-call, and SEO setup (Open Graph, sitemap, Search Console). Lighthouse mobile: Performance 100, SEO 100, Best Practices 96, Accessibility 96.',
-      techStack: [
-        'Next.js 15',
-        'React 19',
-        'TypeScript',
-        'Tailwind CSS',
-        'Framer Motion',
-        'Vitest',
-        'React Testing Library',
-        'Biome',
-        'Vercel'
-      ],
-      liveUrl: 'https://www.annawiebe.de'
-    },
-    {
-      slug: 'movie-explorer',
-      name: 'FrameIT',
-      description:
-        'A movie discovery app powered by the TMDB API. Browse trending films, search by title, and explore detailed info with a clean, responsive UI.',
-      techStack: [
-        'Next.js 15',
-        'TypeScript',
-        'Tailwind CSS',
-        'Framer Motion',
-        'React Query',
-        'TMDB API'
-      ],
-      githubUrl: 'https://github.com/nastasia8811/FrameIT',
-      liveUrl: 'https://frame-it.vercel.app/'
-    },
-    {
-      slug: 'my-portfolio',
-      name: 'My Portfolio',
-      description:
-        'Personal portfolio site with theme switching, parallax hero, scroll animations, and an AI-powered chat. Built with Next.js App Router and Vercel AI SDK.',
-      techStack: [
-        'Next.js 15',
-        'TypeScript',
-        'Tailwind CSS',
-        'Framer Motion',
-        'Vercel AI SDK',
-        'Chat API integration'
-      ],
-      githubUrl: 'https://github.com/nastasia8811/My-Portfolio',
-      liveUrl: 'https://anastasiia-melnyk.vercel.app'
-    },
-    {
-      slug: 'portfolio-chat-api',
-      name: 'Portfolio Chat API',
-      description:
-        'Standalone AI chat service that answers questions about my experience and projects. Powers the chat on this site and is built to be reused by other sites with their own UI.',
-      techStack: [
-        'Next.js 15',
-        'TypeScript',
-        'Vercel AI SDK',
-        'Anthropic API',
-        'Zod',
-        'Redis',
-        'Vitest',
-        'GitHub Actions',
-        'Vercel'
-      ],
-      details: [
-        'Separated from the portfolio into its own repo: the UI stays in each site, the API runs as an independent service on Vercel',
-        'Streams answers in real time using the Vercel AI SDK message stream, compatible with the useChat hook',
-        'Portfolio content is kept as typed data and turned into the assistant context, so the assistant only knows what is published about me',
-        'Security layers: strict request validation with Zod, per-IP rate limiting with Redis, an allow-list of origins (CORS), capped response length, and generic error messages',
-        'The API key lives only in server environment variables and never reaches the browser',
-        'Unit tests for every security rule with Vitest, and CI on GitHub Actions running lint, type check and tests',
-        'Mock mode for local development without API costs'
-      ],
-      githubUrl: 'https://github.com/nastasia8811/chat',
-      liveUrl: 'https://anastasiia-melnyk.vercel.app'
-    }
-  ]
+  projects: projects.map(p => ({
+    slug: p.slug,
+    name: p.title,
+    description: p.description,
+    techStack: p.tech ?? [],
+    details: p.details,
+    githubUrl: p.codeHref,
+    liveUrl: p.demoHref
+  }))
 }

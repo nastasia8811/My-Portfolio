@@ -10,7 +10,7 @@ type ProjectCardProps = {
   description: string
   coverSrc: string
   coverAlt: string
-  demoHref: string
+  demoHref?: string
   demoLabel?: string
   codeHref?: string
   tech?: string[]
@@ -30,6 +30,20 @@ const ProjectCard = ({
 
   const borderColor = colors.border
 
+  const cover = (
+    <figure className='relative aspect-[16/9] overflow-hidden'>
+      <Image
+        src={coverSrc}
+        alt={coverAlt}
+        fill
+        sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw'
+        className='object-cover transition-transform duration-500 group-hover:scale-[1.04]'
+        priority={false}
+      />
+      <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent' />
+    </figure>
+  )
+
   return (
     <m.article
       layout
@@ -39,25 +53,19 @@ const ProjectCard = ({
         borderColor
       }}
     >
-      <Link
-        href={demoHref}
-        aria-label={`${title} – ${demoLabel}`}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='block flex-shrink-0 focus:outline-none'
-      >
-        <figure className='relative aspect-[16/9] overflow-hidden'>
-          <Image
-            src={coverSrc}
-            alt={coverAlt}
-            fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw'
-            className='object-cover transition-transform duration-500 group-hover:scale-[1.04]'
-            priority={false}
-          />
-          <div className='pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent' />
-        </figure>
-      </Link>
+      {demoHref ? (
+        <Link
+          href={demoHref}
+          aria-label={`${title} – ${demoLabel}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='block flex-shrink-0 focus:outline-none'
+        >
+          {cover}
+        </Link>
+      ) : (
+        <div className='flex-shrink-0'>{cover}</div>
+      )}
 
       <div className='relative z-0 flex flex-1 flex-col p-5' style={{ color: colors.text }}>
         <h3 className='text-lg font-semibold leading-snug' style={{ color: colors.primary }}>
@@ -89,18 +97,20 @@ const ProjectCard = ({
         </p>
 
         <nav aria-label='Project links' className='mt-4 flex items-center gap-3'>
-          <Link
-            href={demoHref}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='rounded-full px-3 py-1.5 text-sm font-medium underline-offset-4 transition hover:underline focus:outline-none focus-visible:ring-2'
-            style={{
-              color: colors.buttonText,
-              background: colors.buttonBackground
-            }}
-          >
-            {demoLabel}
-          </Link>
+          {demoHref ? (
+            <Link
+              href={demoHref}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='rounded-full px-3 py-1.5 text-sm font-medium underline-offset-4 transition hover:underline focus:outline-none focus-visible:ring-2'
+              style={{
+                color: colors.buttonText,
+                background: colors.buttonBackground
+              }}
+            >
+              {demoLabel}
+            </Link>
+          ) : null}
 
           {codeHref ? (
             <Link

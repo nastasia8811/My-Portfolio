@@ -25,6 +25,7 @@ My-Portfolio/
 ├── public/                  # Static assets (images, video)
 ├── src/
 │   ├── app/
+│   │   ├── api/portfolio/   # GET → portfolio data as JSON (used by the chat API)
 │   │   ├── components/      # Page-level components
 │   │   ├── componentsReused/ # Shared reusable components
 │   │   ├── context/         # React context providers
@@ -36,10 +37,10 @@ My-Portfolio/
 │   │   ├── layout.tsx       # Root layout
 │   │   └── page.tsx         # Home page
 │   ├── data/
-│   │   ├── projects.ts      # UI project data (covers, links)
+│   │   ├── projects.ts      # Project content: cards and chat details (single source)
 │   │   └── skillCategories.ts # Skill category definitions
 │   ├── lib/
-│   │   ├── portfolio-data.ts # Structured portfolio data
+│   │   ├── portfolio-data.ts # Chat data built from src/data
 │   │   ├── data.ts          # Data access layer
 │   │   ├── aboutVariants.ts # Motion variants for the About section
 │   │   └── projectsVariants.ts # Motion variants for the Projects section
