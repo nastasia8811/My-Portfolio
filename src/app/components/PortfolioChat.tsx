@@ -37,7 +37,7 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
-        api: '/api/chat',
+        api: process.env.NEXT_PUBLIC_CHAT_API_URL ?? '/api/chat',
         body: () => ({
           mode,
           projectId: mode === 'project' ? selectedProjectSlug : undefined

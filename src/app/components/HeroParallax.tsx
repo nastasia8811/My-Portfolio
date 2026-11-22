@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import Link from 'next/link'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const HeroParallax = () => {
@@ -71,9 +70,19 @@ const HeroParallax = () => {
       <div className='absolute inset-0 bg-black/30' />
 
       <div className='relative z-10 mx-auto grid min-h-full max-w-5xl content-center px-6 pt-28 pb-20'>
-        <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>Frontend Engineer</h1>
+        <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>Full-stack Engineer</h1>
+        <p className='mt-4 max-w-xl text-base text-white/90 md:text-xl'>
+          Next.js frontends, Node.js backends, and websites built from first idea to launch, for
+          product teams and for clients.
+        </p>
 
         <div className='mt-8 flex flex-wrap items-center gap-4'>
+          <a
+            href='#contact'
+            className='inline-flex h-11 items-center rounded-full bg-white px-5 text-sm font-medium text-zinc-900 transition duration-300 hover:bg-white/85'
+          >
+            Start a project
+          </a>
           <a
             href='https://www.linkedin.com/in/anastasiia-melnyk-frontend'
             target='_blank'

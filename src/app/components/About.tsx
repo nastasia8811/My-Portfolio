@@ -38,7 +38,7 @@ const About = () => {
               style={{ color: colors.primary, fontFamily: 'serif' }}
               variants={paragraphItem}
             >
-              I build interfaces
+              I build websites and web apps
               <br />
               people <em style={{ color: colors.accent }}>actually</em> enjoy using.
             </m.h2>
@@ -54,11 +54,10 @@ const About = () => {
               style={{ color: colors.secondaryText }}
               variants={paragraphItem}
             >
-              My path to frontend wasn&apos;t a straight line — and that&apos;s probably what makes
-              me a better developer. Before writing my first line of React, I spent years managing
-              complex partnerships and navigating high-stakes business relationships. I know how to
-              read a room, understand what someone actually needs, and communicate clearly across
-              teams.
+              My path to engineering wasn&apos;t a straight line — and that&apos;s probably what
+              makes me a better developer. Before writing code, I spent years managing B2B
+              partnerships, so I know how to understand what people actually need and communicate
+              clearly, with teams and with clients.
             </m.p>
 
             <m.p
@@ -66,13 +65,41 @@ const About = () => {
               style={{ color: colors.secondaryText }}
               variants={paragraphItem}
             >
-              Today I build{' '}
-              <strong className='font-medium'>
-                performant, accessible, and genuinely pleasant user interfaces
-              </strong>{' '}
-              with React, TypeScript, and Next.js. I care about the small things — the transition
-              that feels right, the component that&apos;s a joy to reuse, the codebase your future
-              self won&apos;t curse.
+              Today I work across the full stack:{' '}
+              <strong className='font-medium'>fast, accessible Next.js and React frontends</strong>{' '}
+              on top of <strong className='font-medium'>Node.js backends and SQL databases</strong>,
+              all in TypeScript. I care about the small things — the transition that feels right,
+              the component that&apos;s a joy to reuse, the codebase your future self won&apos;t
+              curse.
+            </m.p>
+
+            <m.p
+              className='mb-5 text-base font-light leading-[1.8]'
+              style={{ color: colors.secondaryText }}
+              variants={paragraphItem}
+            >
+              At <strong className='font-medium'>PINKTUM</strong>, an AI-powered e-learning platform
+              used by enterprise clients across several countries, I built UI components from design
+              systems, integrated REST APIs and contributed to architecture decisions. Before that,
+              at <strong className='font-medium'>Neuland</strong> in Bremen, I built e-commerce
+              features in direct collaboration with clients.
+            </m.p>
+
+            <m.p
+              className='mb-5 text-base font-light leading-[1.8]'
+              style={{ color: colors.secondaryText }}
+              variants={paragraphItem}
+            >
+              <strong className='font-medium'>Need a website?</strong> I take client projects from
+              first idea to launch: design, development, SEO and hosting. For painter Anna Wiebe, I
+              built a portfolio site that scores 100 in Lighthouse for performance and SEO.{' '}
+              <a
+                href='#contact'
+                className='font-medium underline underline-offset-4'
+                style={{ color: colors.accent }}
+              >
+                Let&apos;s talk about your project →
+              </a>
             </m.p>
 
             {/* Pull quote */}
@@ -97,32 +124,6 @@ const About = () => {
                 — PINKTUM, Reference Letter 2025
               </cite>
             </m.blockquote>
-
-            <m.p
-              className='mb-5 text-base font-light leading-[1.8]'
-              style={{ color: colors.secondaryText }}
-              variants={paragraphItem}
-            >
-              At <strong className='font-medium'>PINKTUM</strong> (an AI-powered SaaS e-learning
-              platform), I worked on a product used by enterprise clients across multiple countries
-              — building UI components from design systems, integrating RESTful APIs, and
-              contributing to code architecture decisions. Before that, at{' '}
-              <strong className='font-medium'>Neuland</strong> in Bremen, I built e-commerce
-              features in direct collaboration with clients, learning early that clean code and
-              clear communication are two sides of the same coin.
-            </m.p>
-
-            <m.p
-              className='mb-5 text-base font-light leading-[1.8]'
-              style={{ color: colors.secondaryText }}
-              variants={paragraphItem}
-            >
-              I&apos;m someone who takes{' '}
-              <strong className='font-medium'>ownership without being asked to</strong>. I
-              don&apos;t wait for a ticket to notice something&apos;s broken, and I don&apos;t ship
-              something I&apos;m not proud of. I thrive working closely with designers and product
-              people — I speak both languages.
-            </m.p>
           </m.div>
           <m.div
             className='mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2'

@@ -49,11 +49,11 @@ export type PortfolioData = {
 export const portfolioData: PortfolioData = {
   developer: {
     name: 'Anastasiia Melnyk',
-    title: 'Frontend Engineer',
+    title: 'Full-stack Engineer',
     location: 'Hamburg, Germany',
-    bio: 'Frontend Engineer with a non-linear career path — from managing complex B2B partnerships to building performant, accessible UIs with React, TypeScript, and Next.js. Combines strong communication skills from years in business with a deep love for clean code and thoughtful user experiences.',
+    bio: 'Full-stack Engineer (Next.js, React, Node.js, TypeScript, SQL) with a non-linear career path — from managing complex B2B partnerships to building fast, accessible web apps and client websites. Works with companies as an engineer and with clients who need a website taken from first idea to launch, combining strong communication skills from years in business with a deep love for clean code and thoughtful user experiences.',
     summary:
-      'I build interfaces people actually enjoy using. Experienced in React 18, Next.js App Router, TypeScript, and modern frontend tooling. I care about the small things — the transition that feels right, the component that is a joy to reuse, the codebase your future self will not curse.',
+      'Full-stack Engineer in Hamburg building fast, accessible websites and web apps with Next.js, React, Node.js and TypeScript, for product teams and for clients.',
     skills: SKILL_CATEGORIES,
     yearsOfExperience: 2.2,
     contacts: {
