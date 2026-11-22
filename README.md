@@ -32,6 +32,7 @@ My-Portfolio/
 │   │   ├── global-error.tsx  # Global error boundary
 │   │   ├── globals.css      # Global styles
 │   │   ├── theme.ts         # Theme colours
+│   │   ├── Providers.tsx    # React Query + theme providers
 │   │   ├── layout.tsx       # Root layout
 │   │   └── page.tsx         # Home page
 │   ├── data/
@@ -39,12 +40,15 @@ My-Portfolio/
 │   │   └── skillCategories.ts # Skill category definitions
 │   ├── lib/
 │   │   ├── portfolio-data.ts # Structured portfolio data
-│   │   └── data.ts          # Data access layer
+│   │   ├── data.ts          # Data access layer
+│   │   ├── aboutVariants.ts # Motion variants for the About section
+│   │   └── projectsVariants.ts # Motion variants for the Projects section
 │   └── test/
 │       ├── setup.tsx         # Vitest global setup + mocks
 │       └── helpers.tsx       # renderWithTheme test helper
 ├── .github/workflows/ci.yml # GitHub Actions CI pipeline
-├── .nvmrc                   # Pinned Node.js version
+├── .env.local.example       # Environment variable template
+├── .nvmrc                   # Pinned Node.js version (20)
 ├── eslint.config.mjs        # ESLint flat config
 ├── tailwind.config.ts       # Tailwind config
 ├── .prettierrc.js           # Prettier config
@@ -112,7 +116,7 @@ The project has two layers of quality gates:
 
 - `npm run lint` — ESLint
 - `npx tsc --noEmit` — TypeScript type-checking
-- `npm test` — Vitest (79 tests)
+- `npm test` — Vitest
 
 Deployment is handled automatically by Vercel's Git integration on push to `master`.
 

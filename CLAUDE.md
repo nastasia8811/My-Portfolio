@@ -7,7 +7,7 @@
 - **Styling**: Tailwind CSS v4 — no inline styles, no CSS modules
 - **Animation**: Motion (`motion/react`)
 - **State**: React Query (`@tanstack/react-query`), React Context for theme
-- **AI Chat**: `useChat` from `@ai-sdk/react`, calling the external API in [nastasia8811/chat](https://github.com/nastasia8811/chat) (`NEXT_PUBLIC_CHAT_API_URL`)
+- **AI Chat**: `useChat` from `@ai-sdk/react` in `PortfolioChat.tsx`, calling the external API in [nastasia8811/chat](https://github.com/nastasia8811/chat). The URL comes from `NEXT_PUBLIC_CHAT_API_URL` and falls back to the production chat API. There is no local `/api/chat` route — chat backend changes belong in the chat repo
 - **Testing**: Vitest + React Testing Library + happy-dom
 - **Linting**: ESLint (flat config) + Prettier
 - **Pre-commit**: Husky + lint-staged (runs `eslint --fix` on JS/TS, `prettier --write` on CSS/MD, then `npm test`)
@@ -22,9 +22,12 @@ src/
 │   ├── context/            # React contexts (ThemeContext)
 │   ├── error.tsx           # Route-level error boundary
 │   ├── global-error.tsx    # Global error boundary
+│   ├── Providers.tsx       # QueryClientProvider + ThemeProvider
+│   ├── theme.ts            # Theme colours
 │   ├── layout.tsx          # Root layout
 │   └── page.tsx            # Home page
-├── lib/                    # Data helpers, portfolio content
+├── data/                   # UI data: projects (covers, links), skill categories
+├── lib/                    # Portfolio content, data helpers, Motion variants
 └── test/                   # Test setup and helpers
     ├── setup.tsx           # Vitest global setup + mocks
     └── helpers.tsx         # renderWithTheme test helper
@@ -60,6 +63,7 @@ npm run lint         # ESLint check
 npm run lint:fix     # ESLint auto-fix
 npm test             # Vitest (run once)
 npm run test:watch   # Vitest (watch mode)
+npm run test:coverage # Vitest with coverage
 npx tsc --noEmit     # Type check
 ```
 
