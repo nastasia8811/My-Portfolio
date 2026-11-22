@@ -10,9 +10,8 @@ A personal portfolio website built with Next.js + TypeScript to showcase my proj
 - **React 19** + **TypeScript**
 - **Tailwind CSS 4** for responsive design
 - **Motion** (Framer Motion v12) for scroll-triggered and layout animations
-- **Vercel AI SDK** + **Anthropic Claude** for streaming AI chat
+- **Vercel AI SDK** (`useChat`) for the streaming AI chat, backed by the separate [chat API](https://github.com/nastasia8811/chat)
 - **React Query** for async state management
-- **Zod** for runtime validation
 - **Vitest** + **React Testing Library** for unit and component testing
 - **ESLint 9** (flat config) + **Prettier** for code quality
 - **Husky** + **lint-staged** for pre-commit checks (lint, format, tests)
@@ -26,7 +25,6 @@ My-Portfolio/
 ├── public/                  # Static assets (images, video)
 ├── src/
 │   ├── app/
-│   │   ├── api/chat/        # Streaming AI chat endpoint
 │   │   ├── components/      # Page-level components
 │   │   ├── componentsReused/ # Shared reusable components
 │   │   ├── context/         # React context providers
@@ -81,13 +79,7 @@ Set up environment variables:
 cp .env.local.example .env.local
 ```
 
-Add your API key to `.env.local`:
-
-```
-ANTHROPIC_API_KEY=your_key_here
-```
-
-To test without using tokens, add `CHAT_MOCK=true` to `.env.local`.
+The AI chat is served by a separate API, [nastasia8811/chat](https://github.com/nastasia8811/chat). By default the widget calls the production chat API. To point it at a local copy, set `NEXT_PUBLIC_CHAT_API_URL` in `.env.local` (and add your local origin to the chat API's `ALLOWED_ORIGINS`).
 
 Run in development mode:
 

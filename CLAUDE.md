@@ -7,8 +7,7 @@
 - **Styling**: Tailwind CSS v4 — no inline styles, no CSS modules
 - **Animation**: Motion (`motion/react`)
 - **State**: React Query (`@tanstack/react-query`), React Context for theme
-- **AI Chat**: Vercel AI SDK + Anthropic (`@ai-sdk/anthropic`)
-- **Validation**: Zod v4
+- **AI Chat**: `useChat` from `@ai-sdk/react`, calling the external API in [nastasia8811/chat](https://github.com/nastasia8811/chat) (`NEXT_PUBLIC_CHAT_API_URL`)
 - **Testing**: Vitest + React Testing Library + happy-dom
 - **Linting**: ESLint (flat config) + Prettier
 - **Pre-commit**: Husky + lint-staged (runs `eslint --fix` on JS/TS, `prettier --write` on CSS/MD, then `npm test`)
@@ -21,7 +20,6 @@ src/
 │   ├── components/         # Page-specific components
 │   ├── componentsReused/   # Shared/reusable components
 │   ├── context/            # React contexts (ThemeContext)
-│   ├── api/chat/           # API route (POST /api/chat)
 │   ├── error.tsx           # Route-level error boundary
 │   ├── global-error.tsx    # Global error boundary
 │   ├── layout.tsx          # Root layout

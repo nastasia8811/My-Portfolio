@@ -6,6 +6,10 @@ import { useChat } from '@ai-sdk/react'
 import { useTheme } from '@/app/context/ThemeContext'
 import type { PortfolioProject } from '@/lib/portfolio-data'
 
+// Chat API lives in the separate nastasia8811/chat repo
+const CHAT_API_URL =
+  process.env.NEXT_PUBLIC_CHAT_API_URL ?? 'https://chat-ruby-phi.vercel.app/api/chat'
+
 type ChatMode = 'general' | 'project'
 
 type PortfolioChatProps = {
@@ -37,7 +41,7 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
   const transport = useMemo(
     () =>
       new DefaultChatTransport({
-        api: process.env.NEXT_PUBLIC_CHAT_API_URL ?? '/api/chat',
+        api: CHAT_API_URL,
         body: () => ({
           mode,
           projectId: mode === 'project' ? selectedProjectSlug : undefined
