@@ -5,40 +5,67 @@ export type SkillCategory = {
 
 export const SKILL_CATEGORIES: readonly SkillCategory[] = [
   {
-    title: 'Core',
-    skills: ['TypeScript', 'React & Next.js', 'HTML', 'CSS (SCSS)', 'Redux', 'REST APIs']
-  },
-  {
-    title: 'UI & Styling',
+    title: 'AI-Driven Development',
     skills: [
-      'Tailwind CSS',
-      'Material UI',
-      'Bootstrap',
-      'CSS Modules',
-      'Framer Motion',
-      'Responsive Design'
-    ]
-  },
-  {
-    title: 'Backend & Databases',
-    skills: ['Node.js', 'Express', 'TypeORM', 'SQL (PostgreSQL, MySQL)', 'MongoDB']
-  },
-  {
-    title: 'Testing',
-    skills: ['Jest', 'Vitest', 'React Testing Library']
-  },
-  {
-    title: 'AI',
-    skills: [
-      'Vercel AI SDK',
-      'Anthropic API',
-      'OpenAI API',
-      'AI-assisted Development',
+      'Claude Code (CLAUDE.md, subagents, skills)',
+      'Reviewing and debugging AI-generated code',
+      'LLM integration (Anthropic API, Vercel AI SDK)',
+      'Prompt engineering',
       'Streaming UI'
     ]
   },
   {
-    title: 'Tools',
-    skills: ['Git', 'CI/CD (GitHub Actions)', 'Docker', 'Postman', 'Vercel']
+    title: 'Frontend',
+    skills: [
+      'React & Next.js',
+      'TypeScript',
+      'JavaScript',
+      'Tailwind CSS',
+      'HTML5, CSS3, SCSS',
+      'Redux, Zustand, React Query',
+      'Accessibility'
+    ]
+  },
+  {
+    title: 'Backend & Data',
+    skills: [
+      'Node.js, Express, NestJS',
+      'REST APIs',
+      'PostgreSQL, SQL',
+      'TypeORM & migrations',
+      'WebSockets',
+      'MongoDB',
+      'Redis (Upstash)'
+    ]
+  },
+  {
+    title: 'Testing',
+    skills: [
+      'Unit testing',
+      'Integration testing',
+      'End-to-end testing',
+      'Jest, Vitest, React Testing Library'
+    ]
+  },
+  {
+    title: 'Security & API Design',
+    skills: [
+      'Input validation (Zod)',
+      'Rate limiting',
+      'CORS and origin allow-lists',
+      'Secrets management',
+      'API versioning'
+    ]
+  },
+  {
+    title: 'Quality & Delivery',
+    skills: [
+      'ESLint, Prettier, Husky',
+      'Git',
+      'CI/CD (GitHub Actions)',
+      'Docker',
+      'Swagger/OpenAPI, Postman',
+      'Vercel'
+    ]
   }
 ]

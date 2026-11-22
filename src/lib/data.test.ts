@@ -12,7 +12,7 @@ describe('getDeveloperInfo', () => {
   it('developer has required fields', () => {
     const { developer } = getDeveloperInfo()
     expect(developer.name).toBe('Anastasiia Melnyk')
-    expect(developer.title).toBe('Full-stack Engineer')
+    expect(developer.title).toBe('Full-Stack Engineer | AI-Driven Development')
     expect(developer.contacts.email).toBeDefined()
   })
 })

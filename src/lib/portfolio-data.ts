@@ -51,7 +51,7 @@ export type PortfolioData = {
 export const portfolioData: PortfolioData = {
   developer: {
     name: 'Anastasiia Melnyk',
-    title: 'Full-stack Engineer',
+    title: 'Full-Stack Engineer | AI-Driven Development',
     location: 'Hamburg, Germany',
     bio: 'Full-stack Engineer (Next.js, React, Node.js, TypeScript, SQL) with a non-linear career path — from managing complex B2B partnerships to building fast, accessible web apps and client websites. Works with companies as an engineer and with clients who need a website taken from first idea to launch, combining strong communication skills from years in business with a deep love for clean code and thoughtful user experiences.',
     summary:
