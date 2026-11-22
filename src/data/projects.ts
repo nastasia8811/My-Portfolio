@@ -10,6 +10,8 @@ export type Project = {
   tech?: string[]
   /** Deeper info used only by the chat, not shown on the card */
   details?: string[]
+  /** 'open-chat' shows a "Try it" button that opens the chat on this project */
+  action?: 'open-chat'
 }
 
 export const projects: Project[] = [
@@ -23,6 +25,7 @@ export const projects: Project[] = [
     coverSrc: '/chat-api.png',
     coverAlt: 'Portfolio chat widget answering a question',
     codeHref: 'https://github.com/nastasia8811/chat',
+    action: 'open-chat',
     tech: [
       'Next.js 15',
       'TypeScript',

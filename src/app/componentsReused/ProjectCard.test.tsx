@@ -1,5 +1,7 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { OPEN_CHAT_EVENT, type OpenChatDetail } from '@/lib/chatEvents'
 import { renderWithTheme } from '@/test/helpers'
 import ProjectCard from './ProjectCard'
 
@@ -82,5 +84,28 @@ describe('ProjectCard', () => {
   it('does not render tech stack list when tech is empty', () => {
     renderWithTheme(<ProjectCard {...baseProps} tech={[]} />)
     expect(screen.queryByRole('list', { name: 'Tech stack' })).not.toBeInTheDocument()
+  })
+
+  describe('Try it button', () => {
+    const listener = vi.fn()
+
+    afterEach(() => {
+      window.removeEventListener(OPEN_CHAT_EVENT, listener)
+      listener.mockClear()
+    })
+
+    it('is not rendered without chatProjectSlug', () => {
+      renderWithTheme(<ProjectCard {...baseProps} />)
+      expect(screen.queryByRole('button', { name: 'Try it' })).not.toBeInTheDocument()
+    })
+
+    it('dispatches the open-chat event with the project slug', async () => {
+      window.addEventListener(OPEN_CHAT_EVENT, listener)
+      renderWithTheme(<ProjectCard {...baseProps} chatProjectSlug='portfolio-chat-api' />)
+      await userEvent.setup().click(screen.getByRole('button', { name: 'Try it' }))
+      expect(listener).toHaveBeenCalledTimes(1)
+      const event = listener.mock.calls[0][0] as CustomEvent<OpenChatDetail>
+      expect(event.detail).toEqual({ projectSlug: 'portfolio-chat-api' })
+    })
   })
 })

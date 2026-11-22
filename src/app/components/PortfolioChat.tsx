@@ -5,6 +5,7 @@ import { DefaultChatTransport, type UIMessage } from 'ai'
 import { useChat } from '@ai-sdk/react'
 import { useTheme } from '@/app/context/ThemeContext'
 import type { PortfolioProject } from '@/lib/portfolio-data'
+import { OPEN_CHAT_EVENT, type OpenChatDetail } from '@/lib/chatEvents'
 
 // Chat API lives in the separate nastasia8811/chat repo
 const CHAT_API_URL =
@@ -73,35 +74,41 @@ const PortfolioChat = ({ projects }: PortfolioChatProps) => {
     container.scrollTo?.({ top: container.scrollHeight, behavior: 'smooth' })
   }, [messages, status])
 
-  const onModeChange = useCallback(
-    (newMode: ChatMode) => {
-      // Save current messages before switching
+  // Save the current conversation, then switch to another mode/project and restore its history
+  const switchTo = useCallback(
+    (newMode: ChatMode, slug: string) => {
       if (messages.length > 0) {
         setHistory(prev => ({ ...prev, [historyKey]: messages }))
       }
       setMode(newMode)
-      setInput('')
-      // Restore messages for the new mode
-      const newKey = newMode === 'general' ? 'general' : `project:${selectedProjectSlug}`
-      setMessages(history[newKey] ?? [])
-    },
-    [messages, historyKey, selectedProjectSlug, history, setMessages]
-  )
-
-  const onProjectChange = useCallback(
-    (slug: string) => {
-      // Save current messages before switching
-      if (messages.length > 0) {
-        setHistory(prev => ({ ...prev, [historyKey]: messages }))
-      }
       setSelectedProjectSlug(slug)
       setInput('')
-      // Restore messages for the new project
-      const newKey = `project:${slug}`
+      const newKey = newMode === 'general' ? 'general' : `project:${slug}`
       setMessages(history[newKey] ?? [])
     },
     [messages, historyKey, history, setMessages]
   )
+
+  const onModeChange = useCallback(
+    (newMode: ChatMode) => switchTo(newMode, selectedProjectSlug),
+    [switchTo, selectedProjectSlug]
+  )
+
+  const onProjectChange = useCallback((slug: string) => switchTo('project', slug), [switchTo])
+
+  // Other parts of the page (e.g. a project card's "Try it" button) can open the chat
+  useEffect(() => {
+    const onOpenChat = (event: Event) => {
+      const { projectSlug } = (event as CustomEvent<OpenChatDetail>).detail ?? {}
+      setIsOpen(true)
+      const alreadyThere = mode === 'project' && selectedProjectSlug === projectSlug
+      if (projectSlug && !alreadyThere && projects.some(p => p.slug === projectSlug)) {
+        switchTo('project', projectSlug)
+      }
+    }
+    window.addEventListener(OPEN_CHAT_EVENT, onOpenChat)
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, onOpenChat)
+  }, [projects, switchTo, mode, selectedProjectSlug])
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

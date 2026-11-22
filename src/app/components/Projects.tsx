@@ -47,6 +47,7 @@ const Projects = () => {
                 demoLabel={project.demoLabel}
                 codeHref={project.codeHref}
                 tech={project.tech}
+                chatProjectSlug={project.action === 'open-chat' ? project.slug : undefined}
               />
             </m.li>
           ))}

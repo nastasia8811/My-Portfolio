@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { m } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
+import { openChat } from '@/lib/chatEvents'
 
 type ProjectCardProps = {
   title: string
@@ -14,6 +15,8 @@ type ProjectCardProps = {
   demoLabel?: string
   codeHref?: string
   tech?: string[]
+  /** When set, shows a "Try it" button that opens the chat on this project */
+  chatProjectSlug?: string
 }
 
 const ProjectCard = ({
@@ -24,7 +27,8 @@ const ProjectCard = ({
   demoHref,
   demoLabel = 'Demo',
   codeHref,
-  tech
+  tech,
+  chatProjectSlug
 }: ProjectCardProps) => {
   const { colors } = useTheme()
 
@@ -110,6 +114,20 @@ const ProjectCard = ({
             >
               {demoLabel}
             </Link>
+          ) : null}
+
+          {chatProjectSlug ? (
+            <button
+              type='button'
+              onClick={() => openChat(chatProjectSlug)}
+              className='cursor-pointer rounded-full px-3 py-1.5 text-sm font-medium underline-offset-4 transition hover:underline focus:outline-none focus-visible:ring-2'
+              style={{
+                color: colors.buttonText,
+                background: colors.buttonBackground
+              }}
+            >
+              Try it
+            </button>
           ) : null}
 
           {codeHref ? (

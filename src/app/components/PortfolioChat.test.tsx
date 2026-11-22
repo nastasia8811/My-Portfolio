@@ -1,9 +1,10 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
-import { screen, within } from '@testing-library/react'
+import { act, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithTheme } from '@/test/helpers'
 import PortfolioChat from './PortfolioChat'
 import type { PortfolioProject } from '@/lib/portfolio-data'
+import { openChat as dispatchOpenChat } from '@/lib/chatEvents'
 import type { UIMessage } from 'ai'
 
 // ── mock useChat ────────────────────────────────────────────────────────
@@ -569,6 +570,36 @@ describe('PortfolioChat', () => {
       const input = screen.getByPlaceholderText('Type a message...')
       await user.type(input, 'Test{Enter}')
       expect(mockSendMessage).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('open-chat event', () => {
+    it('opens the chat in project mode with the given project selected', () => {
+      renderChat()
+      act(() => {
+        dispatchOpenChat('project-b')
+      })
+      expect(screen.getByRole('button', { name: 'Close chat' })).toBeInTheDocument()
+      expect(screen.getByRole('combobox')).toHaveValue('project-b')
+      expect(screen.getByText('Ask me about the Project Beta project.')).toBeInTheDocument()
+    })
+
+    it('opens the chat without changing mode when no project is given', () => {
+      renderChat()
+      act(() => {
+        dispatchOpenChat()
+      })
+      expect(screen.getByRole('button', { name: 'Close chat' })).toBeInTheDocument()
+      expect(screen.queryByRole('combobox')).not.toBeInTheDocument()
+    })
+
+    it('ignores an unknown project slug', () => {
+      renderChat()
+      act(() => {
+        dispatchOpenChat('unknown')
+      })
+      expect(screen.getByRole('button', { name: 'Close chat' })).toBeInTheDocument()
+      expect(screen.queryByRole('combobox')).not.toBeInTheDocument()
     })
   })
 })
