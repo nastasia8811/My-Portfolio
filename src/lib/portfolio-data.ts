@@ -20,6 +20,7 @@ export type PortfolioProject = {
   name: string
   description: string
   techStack: string[]
+  details?: string[]
   githubUrl?: string
   liveUrl?: string
 }
@@ -194,9 +195,37 @@ export const portfolioData: PortfolioData = {
         'Tailwind CSS',
         'Framer Motion',
         'Vercel AI SDK',
-        'Anthropic API'
+        'Chat API integration'
       ],
       githubUrl: 'https://github.com/nastasia8811/My-Portfolio',
+      liveUrl: 'https://anastasiia-melnyk.vercel.app'
+    },
+    {
+      slug: 'portfolio-chat-api',
+      name: 'Portfolio Chat API',
+      description:
+        'Standalone AI chat service that answers questions about my experience and projects. Powers the chat on this site and is built to be reused by other sites with their own UI.',
+      techStack: [
+        'Next.js 15',
+        'TypeScript',
+        'Vercel AI SDK',
+        'Anthropic API',
+        'Zod',
+        'Redis',
+        'Vitest',
+        'GitHub Actions',
+        'Vercel'
+      ],
+      details: [
+        'Separated from the portfolio into its own repo: the UI stays in each site, the API runs as an independent service on Vercel',
+        'Streams answers in real time using the Vercel AI SDK message stream, compatible with the useChat hook',
+        'Portfolio content is kept as typed data and turned into the assistant context, so the assistant only knows what is published about me',
+        'Security layers: strict request validation with Zod, per-IP rate limiting with Redis, an allow-list of origins (CORS), capped response length, and generic error messages',
+        'The API key lives only in server environment variables and never reaches the browser',
+        'Unit tests for every security rule with Vitest, and CI on GitHub Actions running lint, type check and tests',
+        'Mock mode for local development without API costs'
+      ],
+      githubUrl: 'https://github.com/nastasia8811/chat',
       liveUrl: 'https://anastasiia-melnyk.vercel.app'
     }
   ]
