@@ -54,7 +54,7 @@ export const projects: Project[] = [
       'Personal portfolio site with theme switching, parallax hero, scroll animations, and an AI-powered chat. Built with Next.js App Router and Vercel AI SDK.',
     coverSrc: '/my-portfolio.png',
     coverAlt: 'My Portfolio website',
-    demoHref: 'https://anastasiia-melnyk.vercel.app',
+    demoHref: 'https://portfolio-anastasiia.vercel.app',
     demoLabel: 'Live site',
     codeHref: 'https://github.com/nastasia8811/My-Portfolio',
     tech: [
