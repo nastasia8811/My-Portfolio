@@ -1,12 +1,17 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useMemo } from 'react'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { makeAboutVariants } from '@/lib/aboutVariants'
+import { useReducedMotion, m } from 'motion/react'
+import { useTheme } from '@/app/context/ThemeContext'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const wrapperRef = useRef<HTMLElement>(null)
-
+  const reduce = useReducedMotion() ?? false
+  const { paragraphs } = useMemo(() => makeAboutVariants(reduce), [reduce])
+  const { colors } = useTheme()
   useEffect(() => {
     const video = videoRef.current
     const section = wrapperRef.current
@@ -71,20 +76,16 @@ const HeroParallax = () => {
 
       <div className='relative z-10 mx-auto grid min-h-full max-w-5xl content-center px-6 pt-28 pb-20'>
         <h1 className='text-4xl/tight md:text-6xl font-semibold text-white'>Full-stack Engineer</h1>
-        <p className='mt-4 max-w-xl text-base text-white/90 md:text-xl'>
-          Next.js frontends, Node.js backends, and websites built from first idea to launch, for
-          product teams and for clients.
-        </p>
 
         <div className='mt-8 flex flex-wrap items-center gap-4'>
           <a
             href='#contact'
-            className='inline-flex h-11 items-center rounded-full bg-white px-5 text-sm font-medium text-zinc-900 transition duration-300 hover:bg-white/85'
+            className='inline-flex h-11 items-center rounded-full bg-white/20 text-white px-5 text-sm font-medium transition duration-300 hover:bg-white/85'
           >
-            Start a project
+            Contact me
           </a>
           <a
-            href='https://www.linkedin.com/in/anastasiia-melnyk-frontend'
+            href='https://www.linkedin.com/in/anastasiia-melnyk-full-stack'
             target='_blank'
             rel='noopener noreferrer'
             aria-label='LinkedIn'
@@ -105,6 +106,20 @@ const HeroParallax = () => {
             <FaGithub size={20} />
           </a>
         </div>
+        <m.p
+          className='mt-10 flex items-center gap-1.5 text-[13px] font-light'
+          style={{ color: colors.secondaryText }}
+          variants={paragraphs}
+          initial='hidden'
+          whileInView='show'
+          viewport={{ once: true }}
+        >
+          <span
+            className='inline-block h-1.5 w-1.5 shrink-0 rounded-full'
+            style={{ background: colors.accent }}
+          />
+          Based in Hamburg, Germany
+        </m.p>
       </div>
     </section>
   )
