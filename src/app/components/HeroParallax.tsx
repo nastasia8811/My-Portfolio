@@ -3,7 +3,7 @@
 import { useRef, useEffect, useMemo } from 'react'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import { makeAboutVariants } from '@/lib/aboutVariants'
-import { useReducedMotion, m } from 'motion/react'
+import { useReducedMotion, motion } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
 
 const HeroParallax = () => {
@@ -106,7 +106,7 @@ const HeroParallax = () => {
             <FaGithub size={20} />
           </a>
         </div>
-        <m.p
+        <motion.p
           className='mt-10 flex items-center gap-1.5 text-[13px] font-light'
           style={{ color: colors.secondaryText }}
           variants={paragraphs}
@@ -119,7 +119,7 @@ const HeroParallax = () => {
             style={{ background: colors.accent }}
           />
           Based in Hamburg, Germany
-        </m.p>
+        </motion.p>
       </div>
     </section>
   )
