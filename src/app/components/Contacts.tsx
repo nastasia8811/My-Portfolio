@@ -68,7 +68,7 @@ const Contacts = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <m.p
-            className='text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight cursor-pointer select-all break-all'
+            className='text-[1.8rem] sm:text-[2.4rem] md:text-7xl font-bold tracking-tight cursor-pointer select-none break-all'
             style={{ color: colors.accent }}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
