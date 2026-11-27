@@ -1,17 +1,14 @@
 'use client'
 
-import { useRef, useEffect, useMemo } from 'react'
+import { useRef, useEffect } from 'react'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
-import { makeAboutVariants } from '@/lib/aboutVariants'
-import { useReducedMotion, motion } from 'motion/react'
 import { useTheme } from '@/app/context/ThemeContext'
 
 const HeroParallax = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const wrapperRef = useRef<HTMLElement>(null)
-  const reduce = useReducedMotion() ?? false
-  const { paragraphs } = useMemo(() => makeAboutVariants(reduce), [reduce])
   const { colors } = useTheme()
+
   useEffect(() => {
     const video = videoRef.current
     const section = wrapperRef.current
@@ -106,20 +103,13 @@ const HeroParallax = () => {
             <FaGithub size={20} />
           </a>
         </div>
-        <motion.p
-          className='mt-10 flex items-center gap-1.5 text-[13px] font-light'
-          style={{ color: colors.secondaryText }}
-          variants={paragraphs}
-          initial='hidden'
-          whileInView='show'
-          viewport={{ once: true }}
-        >
+        <p className='mt-10 flex items-center gap-1.5 text-[13px] font-light text-white/80'>
           <span
             className='inline-block h-1.5 w-1.5 shrink-0 rounded-full'
             style={{ background: colors.accent }}
           />
           Based in Hamburg, Germany
-        </motion.p>
+        </p>
       </div>
     </section>
   )
